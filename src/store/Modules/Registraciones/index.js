@@ -50,8 +50,6 @@ export default {
             let getMovimientos = []
 
             for (let index = 0; index < Registraciones.length; index++) {
-                // const element = Registraciones[index];
-
                 if (state.ImpuestoPeriodo.impuesto == Registraciones[index].impuesto && state.ImpuestoPeriodo.periodo == Registraciones[index].periodo) {
                     
                     // getMovimientos.push(Registraciones[index])
@@ -72,6 +70,7 @@ export default {
                         //solo funciona con Ingresos Brutos!
 
                     })
+
                 }
                 
             }

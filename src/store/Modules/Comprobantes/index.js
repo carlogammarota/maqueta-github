@@ -140,31 +140,27 @@ export default {
 
         // <<<<<<<<<<<< Temporalidad >>>>>>>>>>>>
 
-        let obligacionesFueraDeTermino = getObligaciones.state.items.filter(
-            obligacion => { 
+        let obligacionesFueraDeTermino = getObligaciones.state.items.filter(obligacion => { 
               let vencimiento = moment(obligacion.vencimiento, "YYYY-MM");
     
-              let impuestoSinPagar = state.items.filter(ddjj => {
-    
-                // console.log("MOMENT", moment().f ormat("MM/YYYY"))
-                let mismoImpuesto = ddjj.impuesto === obligacion.impuesto;
-                let mismoPeriodo = ddjj.periodo === moment(obligacion.periodo, "MM/YYYY").format("YYYYMM")
+                let impuestoSinPagar = state.items.filter(ddjj => {
+                    let periodoFormat = moment(ddjj.periodo, "MM/YYYY").format("YYYYMM")
+                    let mismoImpuesto = ddjj.impuesto === obligacion.impuesto;
+                    let mismoPeriodo = periodoFormat === obligacion.periodo
+
+                    if (periodoFormat <= moment().format("YYYYMM")) {    
+                        ddjj.temporalidad = "EN TERMINO"
+                    }
+                    else {
+                        ddjj.temporalidad = "FUERA DE TERMINO"
+                    }
+                    
+                    if (!mismoImpuesto) return false;
+                    if (!mismoPeriodo) return false;
+
+                    return true;
+                });
                 
-     
-    
-                if (!mismoImpuesto) return false;
-                if (!mismoPeriodo) return false;
-    
-                if (ddjj.periodo <= moment()) {
-                  ddjj.temporalidad = "EN TERMINO"
-                }
-                else {
-                  ddjj.temporalidad = "FUERA DE TERMINO"
-                }
-                return true;
-    
-              });
-              // console.log("Impuestos sin pagar");
               if (vencimiento.isBefore(moment()) && impuestoSinPagar.length === 0) {
                 obligacion.temporalidad = "FALTA PRESENTADO"
               }
@@ -173,202 +169,94 @@ export default {
               );
             }
           );
-        //   console.log("concat", this.dataDDJJ.concat(obligacionesFueraDeTermino))
-        //   return this.dataDDJJ.concat(obligacionesFueraDeTermino)
 
-            // let impuestoDeterminadoOrdenado = state.items.sort((a, b) => (a.impuestoDeterminado > b.impuestoDeterminado) ? 1 : -1)
-            
-            // let periodoOrdenado = state.items.sort((a,b) => (a.periodo.replace("/", "") > b.periodo.replace("/", "")) ? 1 : -1)
-            
-            // let fechaOperacionOrdenada = state.items.sort((a,b) => (a.fechaOperacion > b.fechaOperacion) ? 1 : -1 )
-            
-           
-              
-                
-
-            // <<<<<<<<<< Estado >>>>>>>>>>>>
-                //Ordenar Array
-                console.log("items Fecha de Operacion", state.items)
-
-                // for (let index = 0; index < state.items.length; index++) {
-                //     //fecha de operacion ordenada por YYYY-MM-DD
-                //     console.log(moment(state.items[index].periodo, "MM/YYYY").format("YYYYMM"))
-                //     // moment(state.items[index].periodo, "MM/YYYY").format("YYYYMM")
-                //     // moment("12-25-1995", "MM-DD-YYYY");
-
-                //     // moment(a.fechaOperacion, "DD-MM-YYYY").format("YYYYMMDD")
-                //     // moment(a.periodo, "MM/YYYY").format("YYYYMM")
-                // }
-
+        // <<<<<<<<<< Estado >>>>>>>>>>>>
+            //Ordenar Array
+            console.log("items Fecha de Operacion", state.items)
 
             let arrayOrdenado = 
                 state.items
-                    // .sort((a, b) => (
-                    //         a.impuesto + 
-                    //         moment(a.periodo, "MM/YYYY").format("YYYYMM") + 
-                    //         moment(a.fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDDHHmmss") < 
-                    //         b.impuesto + 
-                    //         moment(b.periodo, "MM/YYYY").format("YYYYMM") + 
-                    //         moment(b.fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDDHHmmss")
-                    //         ) ? 1 : -1
-                    //     )
-                        //Ordenado perfectamente
-                .sort((a, b) => (
-                    moment(a.periodo, "MM/YYYY").format("YYYYMM") + 
-                    moment(a.fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDDHHmmss") < 
-                    moment(b.periodo, "MM/YYYY").format("YYYYMM") + 
-                    moment(b.fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDDHHmmss")
-                    ) ? 1 : -1
+                    .sort((a, b) => (
+                        moment(a.periodo, "MM/YYYY").format("YYYYMM") + 
+                        moment(a.fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDDHHmmss") < 
+                        moment(b.periodo, "MM/YYYY").format("YYYYMM") + 
+                        moment(b.fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDDHHmmss")
+                        ) ? 1 : -1
                 )
 
-                // console.log("arrayOrdenado", arrayOrdenado)
                 for (let index = 0; index < arrayOrdenado.length; index++) {
-                    //fecha de operacion ordenada por YYYY-MM-DD
-                    // console.log("arrayOrdenado[index].periodo",   moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM"))
-                    // console.log("arrayOrdenado[index].fechaOperacion", moment(arrayOrdenado[index].fechaOperacion, "DD-MM-YYYY HH:mm:ss").format("YYYYMMDD/HH-MM-SS"))
-                    // console.log("PRUEBA HORA", arrayOrdenado[index].fechaOperacion)
-                    
-                    // console.log("Periodos Ordenados", arrayOrdenado[index].periodo)
-                    // console.log("FechaOperacion Ordenados", arrayOrdenado[index].fechaOperacion)
-                    
-                    // moment(state.items[index].periodo, "MM/YYYY").format("YYYYMM")
-                    // moment("12-25-1995", "MM-DD-YYYY");
 
-                    // moment(a.fechaOperacion, "DD-MM-YYYY").format("YYYYMMDD")
-                    // moment(a.periodo, "MM/YYYY").format("YYYYMM")
                 }
-
-               
-
-
-
-                     //intento de todo junto
-                
-
-
-                // //Detectar Original
-                // let actual = ""
-                // for (let index = 0; index < arrayOrdenado.length; index++) {
-                //     if (moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM") != actual) {
-
-                //         // console.log("periodo formateado", moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM"))
-                //         // console.log("Detectar Original actual", actual)
-                //         arrayOrdenado[index].estado = "Original"
-                //         actual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                //         // console.log("periodo actual", actual)
-                //         // actual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                //         // console.log(actual)
-                //     }
-
-
-
-                //     //Detectar Pendiente de Aprobacion
-                //     let impuestoDetActual = String
-                //     for (let index = 0; index < arrayOrdenado.length; index++) {
-                //         const periodo = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-
-                //         if (periodo != actual) {
-                //             actual = periodo
-                //             impuestoDetActual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                //             impuestoDetActual = arrayOrdenado[index].impuesto
-                //         } else {
-                //             if (moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM") < impuestoDetActual) {
-                //                 arrayOrdenado[index].estado = "Pendiente de Aprobación"
-                //             } else {
-                //                 impuestoDetActual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                //             }
-                //         }
-                //         console.log("Pendiente de Aprobacion", impuestoDetActual)
-                //     }
-
                 //Lo ordener por Periodo despues por fecha pero no lo compare con impuesto para ver si funciona
                 //cuando loadItem esta activo parece funcionar.
                 // }
-                    // Detectar Original
+                    
+                    // Detectar Original (Funcionando!)
                     let actual = ""
                     for (let index = 0; index < arrayOrdenado.length; index++) {
-                        if (moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM") != actual) {
-
-                            // console.log("periodo formateado", moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM"))
-                            // console.log("Detectar Original actual", actual)
+                        let periodo = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
+                        if (periodo != actual) {
                             arrayOrdenado[index].estado = "Original"
-                            actual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                            // console.log("periodo actual", actual)
-                            // actual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                            // console.log(actual)
-                            console.log("actual", actual)
+                            actual = periodo
                         }
                     }
                    
-                    // // Detectar Vigente
-                    // for (let index = arrayOrdenado.length - 1; index >= 0; index--) {
-                    //     // const periodo = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                    //     if (moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM") != actual) {
-                    //         if (arrayOrdenado[index].estado != "Pendiente de Aprobación") {
-                    //             arrayOrdenado[index].estado = "Vigente"
-                    //             // arrayOrdenado[index].estado += "Vigente"
-                    //             actual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                    //         }
-                    //     }
-                    // }
+                    // Detectar Vigente (REVISAR!)
+                    for (let index = arrayOrdenado.length - 1; index >= 0; index--) {
+                        let periodo = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
+                        
+                        if (periodo != actual) {
+                            console.log("estado Aqui", arrayOrdenado[index].estado)
+                            if (arrayOrdenado[index].estado != "Pendiente de Aprobación") {
+                                arrayOrdenado[index].estado = "Vigente"
+                                // arrayOrdenado[index].estado += "Vigente"
+                                actual = periodo
+                            }
+                        }
+                        // console.log("Revisar", actual)
+                    }
             
                     
-                    // //Detectar Pendiente de Aprobacion
-                    // let impuestoDetActual = 0
-                    // for (let index = 0; index < arrayOrdenado.length; index++) {
-                    //     // const periodo = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-
-                    //     if (moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM") != actual) {
-                    //         actual = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
-                    //         impuestoDetActual = arrayOrdenado[index].impuestoDeterminado
-                    //     } else {
-                    //         if (arrayOrdenado[index].impuestoDeterminado < impuestoDetActual) {
-                    //             arrayOrdenado[index].estado = "Pendiente de Aprobación"
-                    //         } else {
-                    //             impuestoDetActual = arrayOrdenado[index].impuestoDeterminado
-                    //         }
-                    //         // if (arrayOrdenado[index].impuestoDeterminado > impuestoDetActual) {
-                    //         //     arrayOrdenado[index].estado = "test"
-                    //         // }
-                    //     }
-                    // }
-
-
-                
-
-              
-                
+                    //Detectar Pendiente de Aprobacion
+                    let impuestoDetActual = 0
+                    for (let index = 0; index < arrayOrdenado.length; index++) {
+                        let periodo = moment(arrayOrdenado[index].periodo, "MM/YYYY").format("YYYYMM")
+                        //es el mismo!
+                        if (periodo != actual) {
+                            actual = periodo
+                            impuestoDetActual = arrayOrdenado[index].impuestoDeterminado
+                        } else {
+                            if (arrayOrdenado[index].impuestoDeterminado < impuestoDetActual) {
+                                arrayOrdenado[index].estado = "Pendiente de Aprobación"
+                            } else {
+                                impuestoDetActual = arrayOrdenado[index].impuestoDeterminado
+                            }
+                            // if (arrayOrdenado[index].impuestoDeterminado > impuestoDetActual) {
+                            //     arrayOrdenado[index].estado = "test"
+                            // }
+                        }
+                    }
 
 
                     // <<<<<<<<<< VENCIMIENTO >>>>>>>>>>>>
+                       // <<<<<<<<<< VENCIMIENTO >>>>>>>>>>>>
                 
-                for (let index = 0; index < getObligaciones.state.items.length; index++) {
-                  if (state.NuevaDJ.impuesto === getObligaciones.state.items[index].impuesto) {
-                    state.obligacion = getObligaciones.state.items[index];
-                  }
-                }
-                
-                //Agregamos el vencimiento sacado de /obligaciones segun el impuesto seleccionado
-                for (let index = 0; index < arrayOrdenado.length; index++) {
-                  if (arrayOrdenado[index].impuesto === state.obligacion.impuesto) {
-                    arrayOrdenado[index].vencimiento = moment(
-                      state.obligacion.vencimiento,
-                      "YYYY-MM-DD"
-                    ).format("DD/MM/YYYY");
-                  }
-                  if (
-                    arrayOrdenado[index].fechaOperacion <=
-                    moment(state.obligacion.vencimiento, "YYYY-MM-DD").format("MM/YYYY")
-                  ) {
-                    arrayOrdenado[index].temporalidad = "EN TERMINO";
-                  }
-                  if (
-                    arrayOrdenado[index].fechaOperacion >
-                    moment(state.obligacion.vencimiento, "YYYY-MM-DD").format("MM/YYYY")
-                  ) {
-                    arrayOrdenado[index].temporalidad = "Fuera de Término";
-                  }
-                }
+                    for (let index = 0; index < getObligaciones.state.items.length; index++) {
+                        if (state.NuevaDJ.impuesto === getObligaciones.state.items[index].impuesto) {
+                            state.obligacion = getObligaciones.state.items[index];
+                        }
+                    }
+                    
+                    //Agregamos el vencimiento sacado de /obligaciones segun el impuesto seleccionado
+                    for (let index = 0; index < arrayOrdenado.length; index++) {
+                        if (arrayOrdenado[index].impuesto === state.obligacion.impuesto) {
+                            arrayOrdenado[index].vencimiento = moment(
+                            state.obligacion.vencimiento,
+                            "YYYY-MM-DD"
+                            ).format("DD/MM/YYYY");
+                        }
+                    }
+
             return obligacionesFueraDeTermino.concat(arrayOrdenado)
             // return impuestoDeterminadoOrdenado
         },
@@ -393,15 +281,15 @@ export default {
             // state.items = [...serverData.cuentas[store.state.indexActual].comprobantes]
             state.items = 
                 [ 
-                    { "idTicket": 750001, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:30:01", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "3", "impuestoDeterminado": 6.66, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "FUERA DE TERMINO" }, 
-                    { "idTicket": 750002, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:32:08", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 44.44, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750003, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:33:16", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 3999.96, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750004, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:34:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 454.44, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750005, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:35:16", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 12, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750006, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:20:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 414.44, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750007, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:21:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 11, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750008, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:25:08", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 442.44, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750009, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:40:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 13, "version": "100", "vencimiento": "04/07/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750001, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:30:01", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "3", "impuestoDeterminado": 6.66, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "FUERA DE TERMINO" }, 
+                    { "idTicket": 750002, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:32:08", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 44.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750003, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:33:16", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 3999.96, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750004, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:34:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 454.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750005, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:35:16", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 12, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750006, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:20:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 414.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750007, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:21:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 11, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750008, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:25:08", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 442.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+                    { "idTicket": 750009, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:40:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 13, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
                 ]
             
             // state.itemsCount = state.items.lengthz

@@ -14,6 +14,7 @@
             {{getDetalleResarcitorios}}
             Get Detalles Punitorios
             {{getDetalleDePunitorios}}
+            {{InteresesResarcitorios}}
             <!-- {{getRetencionSegunImpuestoPeriodo}}
             {{}}
             <br>
@@ -54,13 +55,13 @@
                   <h6>
                     Impuesto
                     <!-- <b-badge variant="dark" class="right fs-10">Ingresos Brutos</b-badge> -->
-                    <!-- <b-badge v-if="$route.params" variant="dark" class="right fs-10">{{$route.params.impuesto}}</b-badge> -->
+                    <b-badge v-if="$route.params" variant="dark" class="right fs-10">{{$route.params.impuesto}}</b-badge>
                   </h6>
                    <v-divider></v-divider>
                   <h6>
                     Periodo
                     <!-- <span class="right">2018-03</span> -->
-                    <!-- <span v-if="$route.params" class="right">{{$route.params.periodo}}</span> -->
+                    <span v-if="$route.params" class="right">{{$route.params.periodo}}</span>
                   </h6>
                   <v-divider></v-divider>
                   <h6>
@@ -77,12 +78,12 @@
                 <b-card class="text-left bg-light" header>
                   <h6>
                     Total Intereses resarcitorios
-                    <span class="right fs-12">$ 00,06</span>
+                    <span class="right fs-12">$ {{InteresesResarcitorios}}</span>
                   </h6>
                    <v-divider></v-divider>
                   <h6>
                     Total Intereses punitorios
-                    <span class="right fs-12">$00,00</span>
+                    <span class="right fs-12">$ {{InteresesPunitorios}}</span>
                   </h6>
                   <v-divider></v-divider>
                   <h6>
@@ -124,7 +125,7 @@
 
                     <h2 class="text-right bg-featured">
                       Total:
-                      <span class>$ 165,95</span>
+                      <span class>$ {{InteresesResarcitorios}}</span>
                     </h2>
                   </b-col>
                 </b-row>
@@ -133,7 +134,7 @@
                   <h2 class="bg-featured">Detalle Intereses Punitorios</h2>
                   <detalle-intereses-mobile></detalle-intereses-mobile>
                   <h2 class="text-right bg-featured">
-                    Total: <span class>$ 165,95</span>
+                    Total: <span class>$ 99999,95</span>
                   </h2>
                 </b-col> 
                <b-col cols="12" sm="12" md="9" lg="12" class="hidden-sm-and-down">
@@ -157,7 +158,7 @@
 
                     <h2 class="text-right bg-featured">
                       Total:
-                      <span class>$ 165,95</span>
+                      <span class>$ {{InteresesPunitorios}}</span>
                     </h2>
                   </b-col>
                 </b-row>
@@ -266,7 +267,23 @@ export default {
   ...mapGetters({
       getDetalleResarcitorios: "obligaciones/getDetalleResarcitorios", 
       getDetalleDePunitorios: "obligaciones/getDetalleDePunitorios", 
-    })
+    }),
+    InteresesResarcitorios: function () {
+      let total = [];
+      Object.entries(this.getDetalleResarcitorios).forEach(([key, val]) => {
+          total.push(val.impuestoDeterminado) 
+      });
+      // console.log("total:", total.reduce(function(total, num){ return total + num }, 0))
+      return total.reduce(function(total, num){ return total + num }, 0);
+    },
+     InteresesPunitorios: function () {
+      let total = [];
+      Object.entries(this.getDetalleDePunitorios).forEach(([key, val]) => {
+          total.push(val.impuestoDeterminado) 
+      });
+      // console.log("total:", total.reduce(function(total, num){ return total + num }, 0))
+      return total.reduce(function(total, num){ return total + num }, 0);
+    }
   },
   mounted() {
     this.$store.commit('comprobantes/loadItems')

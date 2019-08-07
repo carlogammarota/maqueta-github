@@ -5,10 +5,14 @@
         <b-row align-h="center" style="margin-top: 40px">
           <b-col cols="12">
             <b-card class="text-left">
+              <!-- {{$route.params}} -->
+              {{$route.query}}
+              <br/>
+              {{getConsultarImpuestoPeriodo}}
               <!-- <el-tabs v-model="activeTab" @tab-click="handleClick"> -->
               <el-tabs v-model="activeTab">
                 <!-- TAB DETALLE -->
-                {{getConsultarImpuestoPeriodo}}
+                <!-- {{getConsultarImpuestoPeriodo}} -->
                 <el-tab-pane label="Detalle de la Obligación" name="detalleObligacion">
                   <h6>Si desea consultar una obligación en particular, seleccione impuesto y periodo, y pulse el botón Consultar</h6>
                   <v-divider></v-divider>
@@ -24,13 +28,17 @@
                         <b-card-text>
                           <h4 class style="margin: 5px 30px 5px 0px">Impuesto</h4>
                           <el-select
+                           
                             v-model="value"
                             placeholder="Seleccionar impuesto"
                             style="margin: 10px 0px;"
                           >
+                          <!-- getConsultarImpuestoPeriodo -->
                             <el-option value="Inmobiliario" label="Inmobiliario"></el-option>
                             <el-option value="Automotor" label="Automotor"></el-option>
                             <el-option value="Ingresos Brutos" label="Ingresos Brutos"></el-option>
+
+                            <!-- <el-option  value="option"></el-option> -->
                           </el-select>
 
                           <h4 class style="margin: 5px 36px 5px 0px;">Periodo</h4>
@@ -117,7 +125,7 @@
                               <!-- <b-link
                                 to="/cuentaCorriente/consultarObligacion/detalleImpuestoDeterminado"
                               > -->
-                              <b-link v-if="getConsultarImpuestoPeriodo" :to="'/cuentaCorriente/consultarObligacion/detalleImpuestoDeterminado/'+ getConsultarImpuestoPeriodo.impuesto + '/' + getConsultarImpuestoPeriodo.periodo">
+                              <b-link v-if="getConsultarImpuestoPeriodo" :to="'/cuentaCorriente/consultarObligacion/detalleImpuestoDeterminado/'+ getConsultarImpuestoPeriodo.impuesto + '/' + getConsultarImpuestoPeriodo.periodo + '/' + getConsultarImpuestoPeriodo.cuota">
                                <i class="fas fa-list pl-10 fs-12"></i>
                               </b-link>
                               
@@ -371,8 +379,12 @@
 <script>
 import store from "@/store/index";
 import { mapState, mapGetters } from "vuex";
+import moment from 'moment'
 export default {
   name: "consultarObligacionPorPeriodo",
+  components: {
+
+  },
   data() {
     return {
       pagination: {
@@ -390,7 +402,7 @@ export default {
       activeTab: "detalleObligacion",
       monto: 0,
       value: "Inmobiliario",
-      periodo: "2019-02",
+      periodo: "2019-02"
       // getConsultarImpuestoPeriodo: {
       //   vencimientoPago: "",
       //   vencimientoPresentacion: ""
@@ -399,10 +411,16 @@ export default {
   },
   methods: {
     Consultar(){
-      // console.log("Impuesto", this.value)
-      // console.log("Periodo", this.periodo)
 
-      this.$store.commit('obligaciones/loadFiltroPorImpuestoPeriodo', {impuesto: this.value, periodo: this.periodo})
+        // this.$store.commit('obligaciones/loadFiltroPorImpuestoPeriodo', {impuesto: this.value, periodo: moment(this.periodo, "MM/DD/YYYY").format("YYYYMM")})
+
+      if (this.value && this.periodo) {
+   
+        this.$store.commit('obligaciones/loadFiltroPorImpuestoPeriodo', {impuesto: this.value, periodo: moment(this.periodo, "MM/DD/YYYY").format("YYYYMM")})
+        
+    } 
+      
+
 
     },
     filterTag(value, row) {
@@ -427,6 +445,14 @@ export default {
     this.$store.commit('registraciones/loadItems')
     this.$store.commit('obligaciones/loadItems')
     this.$store.commit('retenciones/loadItems')
+    
+    if (this.$route.query.impuesto && this.$route.query.periodo) {
+        // this.data = { impuesto:this.$route.query.impuesto, periodo:this.$route.query.periodo }
+        // this.value = this.$route.query.impuesto
+        // this.periodo = moment(this.$route.query.periodo, "YYYYMM").format("YYYY/MM")
+        this.$store.commit('obligaciones/loadFiltroPorImpuestoPeriodo',  {impuesto: this.$route.query.impuesto, periodo: this.$route.query.periodo})
+    } 
+
   }
 };
 </script>

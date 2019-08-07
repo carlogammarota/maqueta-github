@@ -80,11 +80,18 @@
               :pagination="pagination"
               :show-custom-header="false"
             >
-              <template slot-scope slot="column-slot">
-               
-                <b-link to="/cuentaCorriente/consultarPorPeriodo" class="obligacion-icon">
+              <template slot-scope="ver" slot="column-slot">
+           
+                <!-- <b-link to="/cuentaCorriente/consultarPorPeriodo?impuesto=Inmobiliario&periodo=201903" class="obligacion-icon">
+                  <i class="far fa-file-alt size-3x"></i>
+                </b-link> -->
+
+
+                <b-link :to="{path: '/cuentaCorriente/consultarPorPeriodo', query: {impuesto: GetInmobiliario[ver.$index].impuesto, periodo: GetInmobiliario[ver.$index].periodo}}" class="obligacion-icon">
                   <i class="far fa-file-alt size-3x"></i>
                 </b-link>
+
+                <!-- <button @click="test(GetInmobiliario[ver.$index])">BOTON Test</button> -->
               </template>
             </el-table-wrapper>
 
@@ -98,9 +105,15 @@
               :pagination="pagination"
               :show-custom-header="false"
             >
-              <template slot-scope slot="column-slot">
+              <template slot-scope="ver" slot="column-slot">
               
-                <b-link class="obligacion-icon" to="/cuentaCorriente/consultarPorPeriodo">
+                <!-- <b-link class="obligacion-icon" to="/cuentaCorriente/consultarPorPeriodo">
+                  <i class="far fa-file-alt size-3x"></i>
+                  
+                  
+                </b-link>
+                <button @click="test(ver.$index)">BOTON test 2</button> -->
+                <b-link :to="{path: '/cuentaCorriente/consultarPorPeriodo', query: {impuesto: GetAutomotores[ver.$index].impuesto, periodo: GetAutomotores[ver.$index].periodo}}" class="obligacion-icon">
                   <i class="far fa-file-alt size-3x"></i>
                 </b-link>
               </template>
@@ -115,9 +128,9 @@
               :pagination="pagination"
               :show-custom-header="false"
             >
-              <template slot-scope slot="column-slot">
+              <template slot-scope="ver" slot="column-slot">
                
-                <b-link to="/cuentaCorriente/consultarPorPeriodo" class="obligacion-icon">
+                <b-link :to="{path: '/cuentaCorriente/consultarPorPeriodo', query: {impuesto: GetIngresosBrutos[ver.$index].impuesto, periodo: GetIngresosBrutos[ver.$index].periodo}}" class="obligacion-icon">
                   <i class="far fa-file-alt size-3x"></i>
                 </b-link>
               </template>

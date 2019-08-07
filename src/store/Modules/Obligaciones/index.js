@@ -85,6 +85,7 @@ export default {
 
           for (let index = 0; index < Comprobantes.length; index++) {
             if (state.DetalleIntereses.impuesto == Comprobantes[index].impuesto && moment(state.DetalleIntereses.periodo, "YYYYMM").format("YYYY/MM") == moment(Comprobantes[index].periodo, "MM/YYYY").format("YYYY/MM")) {
+              console.log("Comprobantes[index]", Comprobantes[index])
               SegunImpuestoyPeriodo.push({
 
                 // Falta consultar idTicket
@@ -131,8 +132,7 @@ export default {
         getConsultarImpuestoPeriodo(state){
           let FiltroDetalle = state.items.filter(obligaciones => {
             let FiltroPeriodo = obligaciones.periodo
-            let ObligacionPeriodo = moment(state.FiltroDetalleImpuestoPeriodo.periodo, "MM/DD/YYYY").format("YYYYMM")
-
+            let ObligacionPeriodo = state.FiltroDetalleImpuestoPeriodo.periodo
             if (state.FiltroDetalleImpuestoPeriodo.impuesto == obligaciones.impuesto && FiltroPeriodo == ObligacionPeriodo) {
               for (let index = 0; index < getRegistraciones.state.items.length; index++) {
                 if (getRegistraciones.state.items[index].impuesto === obligaciones.impuesto && getRegistraciones.state.items[index].periodo === ObligacionPeriodo) {
@@ -390,6 +390,7 @@ export default {
         },
         //cargamos el filtro que viene desde "detalle" > consultar por impuesto y periodo
         loadFiltroPorImpuestoPeriodo(state, data){
+          // console.log("loadFiltroPorImpuestoPeriodo", data)
           state.FiltroDetalleImpuestoPeriodo.impuesto = data.impuesto
           state.FiltroDetalleImpuestoPeriodo.periodo = data.periodo
         }

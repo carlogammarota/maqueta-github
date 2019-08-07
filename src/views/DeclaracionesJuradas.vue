@@ -4,22 +4,7 @@
       <b-container style="padding: 0px">
         <b-row align-h="center" style="margin-top: 40px">
           <b-col sm="12" md="12">
-            <!-- <h3>dataDDJJ</h3>
-            {{dataDDJJ}} -->
-            <!-- <h2>Test</h2>
-            <button @click="comprobarTemporalidad()">BOTON </button>
-
-
-            <h1>Declaraciones Juradas Getter</h1>
-            <!-- {{getDeclaracionesJuradas}} -->
-
-            <!-- <ul v-for="data in getDeclaracionesJuradas">
-              <li>{{data.impuestoDeterminado}}</li>
-              <li>{{data.periodo}}</li>
-              <li>{{data.fechaOperacion}}</li>
-              <li>{{data.estado}}</li>
-              <li>{{data.vencimiento}}</li>
-            </ul> -->
+            {{getDeclaracionesJuradas}}
 
 
             <!-- <button @click="handleClick">BOTON TEST</button> -->
@@ -382,6 +367,7 @@ export default {
     },
    
   },
+
   computed: {
     ...mapGetters({
       getBorradores: "borradores/getBorradores",

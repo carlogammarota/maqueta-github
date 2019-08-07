@@ -115,9 +115,14 @@ let router = new Router({
           },
           children: [
             {
+              // path: 'consultarPorPeriodo/:impuesto/:periodo',
+              // name: 'Consultar obligacion por periodo',
+              // component: ConsultarObligacionPorPeriodo,
+
               path: 'consultarPorPeriodo',
               name: 'Consultar obligacion por periodo',
-              component: ConsultarObligacionPorPeriodo
+              component: ConsultarObligacionPorPeriodo,
+              // query: {impuesto: "Impuesto", periodo: "201903"}
             },
             {
               path: 'consultarObligaciones',
@@ -161,7 +166,7 @@ let router = new Router({
                   component: DetallePagosCancelaciones
                 },
                 {
-                  path: 'detalleImpuestoDeterminado/:impuesto/:periodo',
+                  path: 'detalleImpuestoDeterminado/:impuesto/:periodo/:alicuota',
                   name: 'Detalle de impuesto determinado',
                   component: DetalleImpuestoDeterminado
                 },

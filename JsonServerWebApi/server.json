@@ -1,0 +1,490 @@
+{
+  "cuentas": [
+    {
+      "saldos": [
+        {
+          "saldo": 0,
+          "cuota": "03",
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201903",
+          "impuesto": "Ingresos Brutos",
+          "fechaDemanda": ""
+        },
+        {
+          "saldo": 300,
+          "cuota": "03",
+          "cuenta": "multaAutomatica",
+          "periodo": "201904",
+          "impuesto": "Ingresos Brutos",
+          "fechaDemanda": ""
+        },
+        {
+          "saldo": 0,
+          "cuota": "03",
+          "cuenta": "saldoLibreDisponibilidad",
+          "periodo": "201905",
+          "impuesto": "Ingresos Brutos",
+          "fechaDemanda": ""
+        },
+        {
+          "saldo": 2820,
+          "cuota": "04",
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201906",
+          "impuesto": "Ingresos Brutos",
+          "fechaDemanda": ""
+        },
+        {
+          "saldo": 3680,
+          "cuota": "04",
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201903",
+          "impuesto": "Automotor",
+          "fechaDemanda": ""
+        },
+        {
+          "saldo": 1200,
+          "cuota": "04",
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201903",
+          "impuesto": "Inmobiliario",
+          "fechaDemanda": ""
+        },
+        {
+          "saldo": 1200,
+          "cuota": "04",
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201904",
+          "impuesto": "Inmobiliario",
+          "fechaDemanda": ""
+        }
+      ],
+      "borradores": [
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201905",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "alicuota": 0,
+          "formulario": "345",
+          "descripcion": "Declaración Jurada",
+          "ingresosGravados": 0,
+          "impuestoDeterminado": 0
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201905",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "alicuota": 0,
+          "formulario": "345",
+          "descripcion": "Declaración Jurada",
+          "ingresosGravados": 0,
+          "impuestoDeterminado": 0
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201905",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "alicuota": 0,
+          "formulario": "345",
+          "descripcion": "Declaración Jurada",
+          "ingresosGravados": 0,
+          "impuestoDeterminado": 0
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201905",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "alicuota": 0,
+          "formulario": "345",
+          "descripcion": "Declaración Jurada",
+          "ingresosGravados": 0,
+          "impuestoDeterminado": 0
+        }
+      ],
+      "retenciones": [
+        {
+          "cuota": "3",
+          "periodo": "201903",
+          "regimen": "Régimen General",
+          "importe": "500",
+          "impuesto": "Ingresos Brutos",
+          "CUITAgente": "30-71370050-5",
+          "fechaOperacion": "20190325",
+          "nroCertificado": "20558023"
+        },
+        {
+          "cuota": "3",
+          "periodo": "201903",
+          "regimen": "Régimen General",
+          "importe": "500",
+          "impuesto": "Automotor",
+          "CUITAgente": "30-71370050-5",
+          "fechaOperacion": "20190322",
+          "nroCertificado": "20558023"
+        },
+        {
+          "cuota": "3",
+          "periodo": "201903",
+          "regimen": "Régimen General",
+          "importe": "500",
+          "impuesto": "Inmobiliario",
+          "CUITAgente": "30-71370050-5",
+          "fechaOperacion": "20190322",
+          "nroCertificado": "20558023"
+        }
+      ],
+      "comprobantes": [
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201903",
+          "Version": "100",
+          "idTicket": "12033001",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "formulario": "345",
+          "descripcion": "Declaración Jurada",
+          "fechaOperacion": "20190405",
+          "impuestoDeterminado": 2700
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201903",
+          "importe": 300,
+          "Version": "100",
+          "idTicket": "12033002",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "formulario": "803",
+          "descripcion": "Multa Automática",
+          "fechaOperacion": "20190405"
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201905",
+          "Version": "100",
+          "idTicket": "12033003",
+          "impuesto": "Automotor",
+          "formulario": "804",
+          "descripcion": "Liq. Automotor",
+          "fechaOperacion": "20190429",
+          "impuestoDeterminado": 3680
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201903",
+          "importe": 2200,
+          "Version": "100",
+          "idTicket": "12033005",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "formulario": "800",
+          "descripcion": "Pago",
+          "fechaOperacion": "20190411"
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201903",
+          "importe": 800,
+          "Version": "100",
+          "idTicket": "12033006",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "formulario": "800",
+          "descripcion": "Pago",
+          "fechaOperacion": "20190415"
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201904",
+          "Version": "100",
+          "idTicket": "12033007",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "formulario": "345",
+          "descripcion": "Declaración Jurada",
+          "fechaOperacion": "20190505",
+          "impuestoDeterminado": 3150
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "origen": {
+            "periodo": "201903",
+            "impuesto": "Ingresos Brutos",
+            "concepto": "Capital"
+          },
+          "periodo": "201904",
+          "importe": 300,
+          "Version": "100",
+          "destino": {
+            "periodo": "201904",
+            "impuesto": "Ingresos Brutos",
+            "concepto": "Capital"
+          },
+          "idTicket": "12033008",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "",
+          "formulario": "801",
+          "descripcion": "Compensación",
+          "fechaOperacion": "20190506"
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201901",
+          "Version": "100",
+          "idTicket": "12033009",
+          "impuesto": "Inmobiliario",
+          "formulario": "805",
+          "descripcion": "Liq. Inmobiliario",
+          "fechaOperacion": "20190429",
+          "impuestoDeterminado": 1200
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201901",
+          "Version": "100",
+          "idTicket": "12033010",
+          "impuesto": "Test Time",
+          "formulario": "805",
+          "descripcion": "Liq. Inmobiliario",
+          "fechaOperacion": "20190429",
+          "impuestoDeterminado": 1200
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201902",
+          "Version": "100",
+          "idTicket": "12033011",
+          "impuesto": "Test Time 2",
+          "formulario": "805",
+          "descripcion": "Liq. Inmobiliario",
+          "fechaOperacion": "20190429",
+          "impuestoDeterminado": 1200
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201903",
+          "Version": "100",
+          "idTicket": "12033012",
+          "impuesto": "Test Time 3",
+          "formulario": "805",
+          "descripcion": "Liq. Inmobiliario",
+          "fechaOperacion": "20190429",
+          "impuestoDeterminado": 1200
+        },
+        {
+          "CUIT": "20-25044444-5",
+          "periodo": "201903",
+          "Version": "100",
+          "idTicket": "12033012",
+          "impuesto": "Test orden 10",
+          "formulario": "805",
+          "descripcion": "Liq. Inmobiliario",
+          "fechaOperacion": "20190505",
+          "impuestoDeterminado": 1200
+        }
+      ],
+      "registracion": [
+        {
+          "debe": 2700,
+          "cuota": "3",
+          "haber": 0,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201903",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033001",
+          "descripcion": "Por presentación de declaración jurada",
+          "fechaOperacion": "20190405",
+          "fechaRegistracion": "20190405"
+        },
+        {
+          "debe": 0,
+          "cuota": "3",
+          "haber": 2200,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201904",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033005",
+          "descripcion": "Pago bancario",
+          "fechaOperacion": "20190411",
+          "fechaRegistracion": "20190411"
+        },
+        {
+          "debe": 0,
+          "cuota": "3",
+          "haber": 800,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201905",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033005",
+          "descripcion": "Pago bancario",
+          "fechaOperacion": "20190415",
+          "fechaRegistracion": "20190415"
+        },
+        {
+          "debe": 300,
+          "cuota": "3",
+          "haber": 0,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201906",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033005",
+          "descripcion": "Conversion a saldo de libre disponibilidad",
+          "fechaOperacion": "20190415",
+          "fechaRegistracion": "20190415"
+        },
+        {
+          "debe": 300,
+          "cuota": "3",
+          "haber": 0,
+          "cuenta": "multaAutomatica",
+          "periodo": "201907",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033002",
+          "descripcion": "Multa automática por presentación fuera de término",
+          "fechaOperacion": "20190405",
+          "fechaRegistracion": "20190405"
+        },
+        {
+          "debe": 0,
+          "cuota": "3",
+          "haber": 300,
+          "cuenta": "saldoLibreDisponibilidad",
+          "periodo": "201908",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033005",
+          "descripcion": "Conversion a saldo de libre disponibilidad",
+          "fechaOperacion": "20190415",
+          "fechaRegistracion": "20190415"
+        },
+        {
+          "debe": 300,
+          "cuota": "3",
+          "haber": 0,
+          "cuenta": "saldoLibreDisponibilidad",
+          "periodo": "201909",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033008",
+          "descripcion": "Uso de saldo de libre disponibilidad",
+          "fechaOperacion": "20190506",
+          "fechaRegistracion": "20190506"
+        },
+        {
+          "debe": 3150,
+          "cuota": "4",
+          "haber": 0,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201910",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033007",
+          "descripcion": "Por presentación de declaración jurada",
+          "fechaOperacion": "20190505",
+          "fechaRegistracion": "20190505"
+        },
+        {
+          "debe": 0,
+          "cuota": "4",
+          "haber": 300,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201911",
+          "impuesto": "Ingresos Brutos",
+          "idTicket": "12033008",
+          "descripcion": "Compensación",
+          "fechaOperacion": "20190506",
+          "fechaRegistracion": "20190506"
+        },
+        {
+          "debe": 3680,
+          "cuota": "5",
+          "haber": 0,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201903",
+          "impuesto": "Automotor",
+          "idTicket": "12033003",
+          "descripcion": "Liq. Automotor",
+          "fechaOperacion": "20190429",
+          "fechaRegistracion": "20190429"
+        },
+        {
+          "debe": 1200,
+          "cuota": "5",
+          "haber": 0,
+          "cuenta": "impuestoDeterminado",
+          "periodo": "201905",
+          "impuesto": "Inmobiliario",
+          "idTicket": "12033009",
+          "descripcion": "Liq. Inmobiliaria",
+          "fechaOperacion": "20190429",
+          "fechaRegistracion": "20190429"
+        }
+      ],
+      "obligaciones": [
+        {
+          "cuota": "03",
+          "periodo": "201903",
+          "VtoDDJJ": "20190404",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "Capital",
+          "vencimiento": "20190504"
+        },
+        {
+          "cuota": "03",
+          "periodo": "201903",
+          "VtoDDJJ": "20190404",
+          "impuesto": "Automotor",
+          "concepto": "Capital",
+          "vencimiento": "20190510"
+        },
+        {
+          "cuota": "05",
+          "periodo": "201903",
+          "VtoDDJJ": "20190404",
+          "impuesto": "Inmobiliario",
+          "concepto": "Capital",
+          "vencimiento": "20190509"
+        },
+        {
+          "cuota": "05",
+          "periodo": "201906",
+          "VtoDDJJ": "20190606",
+          "impuesto": "Inmobiliario",
+          "concepto": "Capital",
+          "vencimiento": "20190610"
+        },
+        {
+          "cuota": "04",
+          "periodo": "201904",
+          "VtoDDJJ": "20190505",
+          "impuesto": "Ingresos Brutos",
+          "concepto": "Capital",
+          "vencimiento": "20190505"
+        }
+      ],
+      "contribuyente": {
+        "CUIT": "20-25044444-5",
+        "nombre": "Ramon Perez Garcia",
+        "domicilio": "La Rioja 345 2º"
+      },
+      "notificaciones": [
+        {
+          "link": "http:www.google.com",
+          "icono": "icon",
+          "mensaje": "Hemos registrado su pago - Automotores 2019, cuota 2."
+        },
+        {
+          "link": "http:www.google.com",
+          "icono": "icon",
+          "mensaje": "Hemos registrado su pago - Automotores 2019, cuota 3."
+        },
+        {
+          "link": "http:www.google.com",
+          "icono": "icon",
+          "mensaje": "Hemos registrado su pago - Automotores 2019, cuota 3."
+        }
+      ]
+    }
+  ]
+}
