@@ -1,7 +1,8 @@
-import serverData from "@/../JsonServerWebApi/server.json"
+
 import store from '../../index'
 import  RemplazarCaracteres from "../RemplazarCaracteres"
 import moment from 'moment'
+import axios from 'axios';
 
 import getObligaciones from "../Obligaciones/index.js"
 
@@ -279,18 +280,28 @@ export default {
         },
         loadItems(state) {
             // state.items = [...serverData.cuentas[store.state.indexActual].comprobantes]
-            state.items = 
-                [ 
-                    { "idTicket": 750001, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:30:01", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "3", "impuestoDeterminado": 6.66, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "FUERA DE TERMINO" }, 
-                    { "idTicket": 750002, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:32:08", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 44.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750003, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:33:16", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 3999.96, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750004, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:34:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 454.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750005, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:35:16", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 12, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750006, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:20:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 414.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750007, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:21:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 11, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750008, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:25:08", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 442.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                    { "idTicket": 750009, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:40:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 13, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
-                ]
+            // state.items = 
+            //     [ 
+            //         { "idTicket": 750001, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:30:01", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "3", "impuestoDeterminado": 6.66, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "FUERA DE TERMINO" }, 
+            //         { "idTicket": 750002, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:32:08", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 44.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750003, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:33:16", "CUIT": "20-25044444-5", "impuesto": "Ingresos Brutos", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 3999.96, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750004, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:34:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 454.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750005, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:35:16", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 12, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750006, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:20:08", "CUIT": "20-25044444-5", "impuesto": "Automotor", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 414.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750007, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:21:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 11, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750008, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:25:08", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 442.44, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //         { "idTicket": 750009, "formulario": "345", "descripcion": "Declaración Jurada", "fechaOperacion": "06-25-2019 04:40:16", "CUIT": "20-25044444-5", "impuesto": "Inmobiliario", "concepto": "Capital", "periodo": "03/2019", "ingresosGravados": 0, "alicuota": "4", "impuestoDeterminado": 13, "version": "100", "vencimiento": "04/09/2019", "temporalidad": "EN TERMINO" }, 
+            //     ]
+
+            axios.get(`https://json-server-420.herokuapp.com/db/`)
+            .then(response => {
+              // JSON responses are automatically parsed.
+              console.log("data:", response.data.cuentas[0].comprobantes)
+              state.items = response.data.cuentas[0].comprobantes
+            })
+            .catch(e => {
+              this.errors.push(e)
+            })
             
             // state.itemsCount = state.items.lengthz
             // console.log("Load Comprobantes desde json", state.items)

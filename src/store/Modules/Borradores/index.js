@@ -1,8 +1,9 @@
-import serverData from "@/../JsonServerWebApi/server.json"
+
 import store from '../../index'
 import  RemplazarCaracteres from "../RemplazarCaracteres"
 import moment from 'moment'
 import getComprobantes from "../Comprobantes/index.js"
+import axios from 'axios';
 
 export default {
     namespaced: true,
@@ -29,8 +30,19 @@ export default {
     },
     mutations: {
         loadItems(state) {
-            state.items = [...serverData.cuentas[store.state.indexActual].borradores]
+            // state.items = [...serverData.cuentas[store.state.indexActual].borradores]
             state.itemsCount = state.items.length
+
+            axios.get(`https://json-server-420.herokuapp.com/db/`)
+            .then(response => {
+              // JSON responses are automatically parsed.
+              console.log("data:", response.data.cuentas[0].borradores)
+              state.items = response.data.cuentas[0].borradores
+            })
+            .catch(e => {
+              this.errors.push(e)
+            })
+
         },
         borrarDatos(state, data){
             state.items.splice(state.items.indexOf(data), 1)

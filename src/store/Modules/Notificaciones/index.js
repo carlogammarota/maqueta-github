@@ -1,6 +1,6 @@
-import serverData from "@/../JsonServerWebApi/server.json"
-import store from '../../index'
 
+import store from '../../index'
+import axios from 'axios';
 export default {
   namespaced: true,
   state: {
@@ -29,9 +29,20 @@ export default {
     // carga las notificaciones del json
     loadItems(state, data) {
       // console.log("Vuex loadItems ", [...serverData.cuentas[store.state.indexActual].notificaciones])
-      state.items = [...serverData.cuentas[store.state.indexActual].notificaciones]
-      // console.log("State Items", state.items)
+      // state.items = [...serverData.cuentas[store.state.indexActual].notificaciones]
+      // // console.log("State Items", state.items)
       state.itemsCount = state.items.length
+
+
+      axios.get(`https://json-server-420.herokuapp.com/db/`)
+      .then(response => {
+        // JSON responses are automatically parsed.
+        console.log("data:", response.data.cuentas[0].notificaciones)
+        state.items = response.data.cuentas[0].notificaciones
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
     }
   },
   actions: {
