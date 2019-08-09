@@ -104,8 +104,19 @@
             </el-tabs>
             <!-- popup -->
 
-            <el-dialog title="Declaración Jurada" :visible.sync="nuevaDeclaracion" width="500px">
-              <declaracion-jurada v-on:PresentarDj='PresentarDj($event)' :PresentarDj="presentar" :OldSelect="oldSelect" :Selection="selection" :Mode="mode" :Save="save" :Contribuyente="getContribuyente" v-on:GuardarDatos="NuevaDeclaracionJurada($event)" v-on:SaveChangeDetect="SaveChange($event)"></declaracion-jurada>
+            <el-dialog title="Declaración Jurada" :visible.sync="nuevaDeclaracion" >
+              <declaracion-jurada 
+                
+                v-on:PresentarDj='PresentarDj($event)' 
+                :PresentarDj="presentar" 
+                :OldSelect="oldSelect" 
+                :Selection="selection" 
+                :Mode="mode" 
+                :Save="save" 
+                :Contribuyente="getContribuyente" 
+                v-on:GuardarDatos="NuevaDeclaracionJurada($event)" 
+                v-on:SaveChangeDetect="SaveChange($event)">
+              </declaracion-jurada>
               <v-divider></v-divider>
               <el-button size="mini" @click="nuevaDeclaracion = false; GuardarEnBorrador()">Guardar Borrador</el-button>
               <el-button size="mini" type="primary" @click="nuevaDeclaracion = false; presentar = 'si'">Presentar DJ</el-button>
@@ -386,3 +397,8 @@ export default {
   }
 };
 </script>
+<style>
+.el-dialog{
+  min-width: 300px;
+}
+</style>
