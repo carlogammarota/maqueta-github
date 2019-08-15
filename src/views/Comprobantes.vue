@@ -48,7 +48,9 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
+                <TablaResponsive class="hidden-md-and-up" :data="getFilteredRecientes"></TablaResponsive>
                 <el-table-wrapper
+                  class="hidden-md-and-down"
                   :data="getFilteredRecientes"
                   :columns="columns"
                   :pagination="pagination"
@@ -104,7 +106,9 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
+                <TablaResponsive class="hidden-md-and-up" :data="getFilteredItems"></TablaResponsive>
                 <el-table-wrapper
+                  class="hidden-md-and-down"
                   :data="getFilteredItems"
                   :columns="columns"
                   :pagination="pagination"
@@ -148,11 +152,13 @@
 import store from "@/store/index";
 import BusquedaAvanzada from "@/views/components/BusquedaAvanzada";
 import { mapState, mapGetters } from "vuex";
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 
 export default {
   name: "comprobantes",
   components: {
-    BusquedaAvanzada
+    BusquedaAvanzada,
+    TablaResponsive
   },
   data() {
     return {

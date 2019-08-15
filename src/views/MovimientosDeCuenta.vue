@@ -5,7 +5,7 @@
         <b-row align-h="center" style="margin-top: 40px">
           <b-col sm="12" md="12">
             <!-- nav bar -->
-            {{getMovimientosImpuestoPeriodo}}
+            <!-- {{getMovimientosImpuestoPeriodo}}22 -->
             <b-navbar toggleable="lg" type="light" variant="info">
               <b-navbar-toggle target="nav_collapse"/>
 
@@ -37,7 +37,7 @@
             <v-divider></v-divider>
 
               <b-row>
-                <b-col cols="3">
+                <b-col cols="12" >
                     <b-card class="text-left bg-light" header="">
                   <!-- <h3>Impuesto<b-badge variant="dark" class="right fs-10">Ingresos Brutos</b-badge></h3> -->
                   <h3>Impuesto<b-badge variant="dark" class="right fs-10">{{seleccionado.impuesto}}</b-badge></h3>
@@ -53,13 +53,15 @@
                   <h6>Saldo<span class="right">$ 0</span></h6>
                   <v-divider></v-divider>
                     </b-card>
+                    <TablaResponsive class="hidden-md-and-up" :data="getMovimientosImpuestoPeriodo"></TablaResponsive>     
                 </b-col>
-                <b-col cols="9">     
+                <b-col cols="12">
                  <el-table-wrapper
-              :data="getMovimientosImpuestoPeriodo"
-              :columns="tableColumns"
-              :pagination="pagination"
-              :show-custom-header="false"
+                  class="hidden-md-and-down"
+                  :data="getMovimientosImpuestoPeriodo"
+                  :columns="tableColumns"
+                  :pagination="pagination"
+                  :show-custom-header="false"
             >
               <template slot-scope slot="column-slot">
                 <b-link to="/comprobantes/ticket" class="obligacion-icon">
@@ -73,8 +75,7 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="3"></b-col>
-          <b-col cols="9">
+          <b-col cols="12">
             <v-divider></v-divider>
     
             <h2 class="text-right bg-featured">Saldo: <span class="">$ 0.00</span></h2>
@@ -86,10 +87,14 @@
 </template>
 
 <script>
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 import store from "@/store/index";
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "movimientosDeCuenta",
+  components:{
+    TablaResponsive
+  },
   data() {
     return {
       tableColumns: [

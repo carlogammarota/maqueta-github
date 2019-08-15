@@ -1,8 +1,8 @@
-
+import serverData from "@/../JsonServerWebApi/server.json"
 import store from '../../index'
 import moment from 'moment'
 import getRegistraciones from "../Registraciones/index.js"
-import axios from 'axios';
+
 export default {
     namespaced: true,
     state: {
@@ -84,20 +84,8 @@ export default {
     mutations: {
         // carga las registraciones que estan en el json
         loadItems(state) {
-            // state.items = [...serverData.cuentas[store.state.indexActual].registracion]
+            state.items = [...serverData.cuentas[store.state.indexActual].registracion]
             state.itemsCount = state.items.length
-
-
-                
-        axios.get(`https://json-server-420.herokuapp.com/db/`)
-        .then(response => {
-            // JSON responses are automatically parsed.
-            console.log("data:", response.data.cuentas[0].registracion)
-            state.items = response.data.cuentas[0].registracion
-        })
-        .catch(e => {
-            this.errors.push(e)
-        })
         },
         saveItem(state, data) {
             state.items.push(state.item)

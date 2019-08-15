@@ -4,7 +4,7 @@
       <b-container style="padding: 0px">
         <b-row align-h="center" style="margin-top: 40px">
           <b-col sm="12" md="12">
-            {{getDeclaracionesJuradas}}
+            <!-- {{getDeclaracionesJuradas}} -->
 
 
             <!-- <button @click="handleClick">BOTON TEST</button> -->
@@ -41,7 +41,8 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
-                <el-table-wrapper :data="getDeclaracionesJuradas" :columns="columnsDDJJ" :pagination="pagination" :show-custom-header="false">
+                <TablaResponsive class="hidden-md-and-up" :data="getDeclaracionesJuradas"></TablaResponsive>
+                <el-table-wrapper class="hidden-sm-and-down" :data="getDeclaracionesJuradas" :columns="columnsDDJJ" :pagination="pagination" :show-custom-header="false">
                   <template slot-scope slot="column-slot">
                     <b-link class="obligacion-icon" to="/comprobantes/ticket">
                       <i class="far fa-file-alt size-3x"></i>
@@ -78,7 +79,8 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
-                <el-table-wrapper :data="getBorradores" :columns="columnsBorradores" :pagination="pagination" :show-custom-header="false">
+                <TablaResponsive class="hidden-md-and-up" :data="getBorradores"></TablaResponsive>
+                <el-table-wrapper class="hidden-sm-and-down" :data="getBorradores" :columns="columnsBorradores" :pagination="pagination" :show-custom-header="false">
                   <template slot-scope="value" slot="column-acciones">
                     <!--  <el-tag :type="scope.row.tag === 'No disponible' ? 'primary' : 'success'" close-transition="">
         {{scope.row.tag}}
@@ -146,11 +148,13 @@ import store from "@/store/index";
 import DeclaracionJurada from "@/views/components/DeclaracionJurada";
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 import { fork } from 'child_process';
 export default {
   name: "declaracionesJuradas",
   components: {
-    DeclaracionJurada
+    DeclaracionJurada,
+    TablaResponsive
   },
   data() {
     return {

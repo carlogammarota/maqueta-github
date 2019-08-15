@@ -53,8 +53,9 @@
               </b-collapse>
             </b-navbar>
             <v-divider></v-divider>
-
+            <TablaResponsive class="hidden-md-and-up" :data="getObligaciones"></TablaResponsive>
             <el-table-wrapper
+              class="hidden-md-and-down"
               :data="getObligaciones"
               :columns="columns"
               :pagination="pagination"
@@ -75,10 +76,14 @@
 </template>
 
 <script>
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 import store from "@/store/index";
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "agendaVencimientos",
+  components:{
+    TablaResponsive
+  },
   data() {
     return {
       columns: [

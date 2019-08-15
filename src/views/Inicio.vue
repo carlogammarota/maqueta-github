@@ -2,6 +2,16 @@
   <div class="animated fadeIn">
     <b-card class="text-center">
       <b-container style="padding: 0px">
+       <!-- {{getDeudas}} -->
+        {{GetInmobiliario}}
+       <p v-for="saldos in getDeudas">
+        {{saldos.impuesto}}
+       </p>
+
+       <p>INTERESES</p>
+       {{getDetalleDePunitorios}}
+       <br/>
+       {{getDetalleResarcitorios}}
         <b-row align-h="center">
           <b-col sm="12" md="4">
             <b-card no-body class="bg-info">
@@ -217,7 +227,7 @@
                   </table>
                 </template>
                 <data-tables
-                  :data="tableDataInmobiliario"
+                  :data="GetInmobiliario"
                   :filters="filters"
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
                 >
@@ -418,7 +428,8 @@
 import store from "@/store/index";
 import SelectImpuesto from "@/views/components/SelectImpuesto";
 import InfoResarcitorios from "@/views/components/InfoResarcitorios";
-import { mapState, mapActions, mapMutations } from 'vuex'
+// import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "inicio",
@@ -455,7 +466,7 @@ export default {
           label: "Periodo"
         },
         {
-          prop: "vencimiento",
+          prop: "vencimientoPago",
           label: "Vencimiento"
         },
         {
@@ -695,13 +706,16 @@ export default {
       return row.estado === value;
     },
   },
-  computed: {},
-  mounted() {
-  
-
-  },
   computed: {
-
+    ...mapGetters({
+      getDeudas: "obligaciones/getDeudas", 
+      GetInmobiliario: "obligaciones/GetInmobiliario",
+      getDetalleDePunitorios: "obligaciones/getDetalleDePunitorios", 
+      getDetalleResarcitorios: "obligaciones/getDetalleResarcitorios", 
+    })
+  },
+  mounted() {
+    this.$store.commit('obligaciones/loadSaldos')
   }
 };
 </script>

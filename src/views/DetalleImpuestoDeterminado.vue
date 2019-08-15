@@ -51,9 +51,10 @@
                 </b-col>
                 
                 <b-col class="hidden-md-and-up" cols="12">
-                  <detalle-impuesto-determinado-mobile></detalle-impuesto-determinado-mobile>
+                  <!-- <detalle-impuesto-determinado-mobile></detalle-impuesto-determinado-mobile> -->
+                  <TablaResponsive :data="GetPorImpuestoyPeriodo"></TablaResponsive>
                 </b-col> 
-                <b-col cols="12" sm="12" md="9" class="hidden-sm-and-down">     
+                <b-col cols="12" sm="12" md="9" class="hidden-md-and-down">     
                  <el-table-wrapper
                   :data="GetPorImpuestoyPeriodo"
                   :columns="tableColumns"
@@ -80,12 +81,14 @@
 <script>
 import store from "@/store/index";
 import DetalleImpuestoDeterminadoMobile from "@/views/mobile/DetalleImpuestoDeterminado"
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "detalleImpuestoDeterminado",
   components: {
-    DetalleImpuestoDeterminadoMobile
+    DetalleImpuestoDeterminadoMobile,
+    TablaResponsive
   },
   data() {
     return {

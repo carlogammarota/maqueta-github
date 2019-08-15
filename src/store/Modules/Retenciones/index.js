@@ -1,6 +1,6 @@
-
+import serverData from "@/../JsonServerWebApi/server.json"
 import store from '../../index'
-import axios from 'axios';
+
 export default {
     namespaced: true,
     state: {
@@ -40,19 +40,8 @@ export default {
         },
          // carga las retenciones el json
         loadItems(state) {
-            // state.items = [...serverData.cuentas[store.state.indexActual].retenciones]
+            state.items = [...serverData.cuentas[store.state.indexActual].retenciones]
             state.itemsCount = state.items.length
-
-
-            axios.get(`https://json-server-420.herokuapp.com/db/`)
-            .then(response => {
-              // JSON responses are automatically parsed.
-              console.log("data:", response.data.cuentas[0].retenciones)
-              state.items = response.data.cuentas[0].retenciones
-            })
-            .catch(e => {
-              this.errors.push(e)
-            })
         }
     },
     actions: { 

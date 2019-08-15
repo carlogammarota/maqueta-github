@@ -1,10 +1,10 @@
-
+import serverData from "@/../JsonServerWebApi/server.json"
 import store from '../../index'
 import moment from 'moment'
 import getRegistraciones from "../Registraciones/index.js"
 import getRetenciones from "../Retenciones/index.js"
 import getComprobantes from "../Comprobantes/index.js"
-import axios from 'axios';
+
 export default {
     namespaced: true,
     state: {
@@ -23,6 +23,13 @@ export default {
         },
     },
     getters: {
+        //Inicio
+        getDeudas(state){
+          console.log("state.saldos", state.saldos)
+          return state.saldos
+
+        },
+
         getDetalleDePunitorios(state){
           let formulario345 = getComprobantes.state.clearItem.f345
           let SegunImpuestoyPeriodo = []
@@ -378,19 +385,8 @@ export default {
         },
         // carga las obligaciones que estan en el json
         loadItems(state) {
-            // state.items = [...serverData.cuentas[store.state.indexActual].obligaciones]
+            state.items = [...serverData.cuentas[store.state.indexActual].obligaciones]
             state.itemsCount = state.items.length
-
-                  
-            axios.get(`https://json-server-420.herokuapp.com/db/`)
-            .then(response => {
-              // JSON responses are automatically parsed.
-              console.log("data:", response.data.cuentas[0].obligaciones)
-              state.items = response.data.cuentas[0].obligaciones
-            })
-            .catch(e => {
-              this.errors.push(e)
-            })
         },
         loadSaldos(state){
             state.saldos = [...serverData.cuentas[store.state.indexActual].saldos]

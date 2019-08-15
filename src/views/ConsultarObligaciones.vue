@@ -68,9 +68,30 @@
         </b-row>
         <b-row>
           
-          <b-col md="12">
+          <b-col class="hidden-md-and-up" cols="12">
+            <div v-if="viewInmobiliario">
+              <h2 class="bg-featured">Inmobiliario</h2>
+              <TablaResponsive :data="GetInmobiliario"></TablaResponsive>
+             </div>
+          </b-col> 
+
+          <b-col class="hidden-md-and-up" cols="12">
+            <div v-if="viewAutomotores">
+              <h2 class="bg-featured">Automotores</h2>
+              <TablaResponsive :data="GetAutomotores"></TablaResponsive>
+             </div>
+          </b-col>
+
+          <b-col class="hidden-md-and-up" cols="12">
+            <div v-if="viewIIBB">
+              <h2 class="bg-featured">Ingresos Brutos</h2>
+              <TablaResponsive :data="GetIngresosBrutos"></TablaResponsive>
+            </div>
+          </b-col>
+
+          <b-col md="12" class="hidden-sm-and-down">
             <v-divider></v-divider>
-        
+              
             <div v-if="viewInmobiliario">
             <h2 class="bg-featured">Inmobiliario</h2>
 
@@ -105,7 +126,7 @@
               :pagination="pagination"
               :show-custom-header="false"
             >
-              <template slot-scope="ver" slot="column-slot">
+                <template slot-scope="ver" slot="column-slot">
               
                 <!-- <b-link class="obligacion-icon" to="/cuentaCorriente/consultarPorPeriodo">
                   <i class="far fa-file-alt size-3x"></i>
@@ -113,12 +134,12 @@
                   
                 </b-link>
                 <button @click="test(ver.$index)">BOTON test 2</button> -->
-                <b-link :to="{path: '/cuentaCorriente/consultarPorPeriodo', query: {impuesto: GetAutomotores[ver.$index].impuesto, periodo: GetAutomotores[ver.$index].periodo}}" class="obligacion-icon">
-                  <i class="far fa-file-alt size-3x"></i>
-                </b-link>
-              </template>
-            </el-table-wrapper>
-            <v-divider></v-divider>
+                  <b-link :to="{path: '/cuentaCorriente/consultarPorPeriodo', query: {impuesto: GetAutomotores[ver.$index].impuesto, periodo: GetAutomotores[ver.$index].periodo}}" class="obligacion-icon">
+                    <i class="far fa-file-alt size-3x"></i>
+                  </b-link>
+                </template>
+              </el-table-wrapper>
+              <v-divider></v-divider>
             </div>
             <div v-if="viewIIBB">
             <h2 class="bg-featured">Ingresos Brutos</h2>
@@ -147,9 +168,13 @@
 
 <script>
 import store from "@/store/index";
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "pagar",
+  components: {
+    TablaResponsive
+  },
   data() {
     return {
       tableColumns: [
