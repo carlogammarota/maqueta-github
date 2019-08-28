@@ -6,17 +6,19 @@
           <b-col sm="12" md="12">
             <!-- nav bar -->
             <b-navbar toggleable="lg" type="light" variant="info">
+              <b-link to="/inicio">
+                <el-button size="mini">
+                  <i class="fas fa-arrow-left padding-icon"></i>Volver
+                </el-button>
+              </b-link>
               <b-navbar-toggle target="nav_collapse"/>
+              
 
               <b-collapse is-nav id="nav_collapse" class="bg-navbar">
+              <br/>
                 <b-navbar-nav>
-                  <b-link>
-                    <el-button size="mini">
-                      <i class="fas fa-arrow-left padding-icon"></i>Volver
-                    </el-button>
-                  </b-link>
+                
                   <el-input
-                    style="width: 300px; margin-left: 5px;"
                     placeholder="Filtrar por impuesto, periodo o importe"
                     prefix-icon="el-icon-search"
                     v-model="filtrado"
@@ -56,7 +58,9 @@
             <h2 class="bg-featured">Obligaciones adeudadas</h2>
           </b-col>
           <b-col cols="12">
+          <TablaResponsive class="hidden-md-and-up" :data="data"></TablaResponsive>
             <el-table-wrapper
+              class="hidden-md-and-down"
               row-key="id"
               ref="tableDeudas"
               :data="data"
@@ -95,8 +99,11 @@
 
 <script>
 import store from "@/store/index";
-
+import TablaResponsive from "@/views/mobile/TablaResponsive"
 export default {
+  components:{
+    TablaResponsive
+  },
   name: "pagar",
   data() {
     return {
@@ -203,7 +210,7 @@ export default {
           importe: "$ 2.521,36",
           children: [
             {
-              id: 21,
+              id: 25,
               impuesto: "",
               concepto: "Capital",
               periodo: "01/2010",
@@ -213,7 +220,7 @@ export default {
               importe: "$ 2.000"
             },
             {
-              id: 22,
+              id: 25,
               impuesto: "",
               concepto: "Intereses Resarcitorios",
               periodo: "01/2010",
@@ -223,7 +230,7 @@ export default {
               importe: "$ 21,36"
             },
             {
-              id: 23,
+              id: 26,
               impuesto: "",
               concepto: "Intereses Punitorios",
               periodo: "01/2010",

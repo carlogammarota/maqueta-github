@@ -10,6 +10,11 @@
               <el-tab-pane label="Comprobantes recientes" name="recientes">
                 <!-- nav bar -->
                 <b-navbar toggleable="lg" type="light" variant="info">
+                  <b-link to="/inicio">
+                      <el-button size="mini">
+                        <i class="fas fa-arrow-left padding-icon"></i>Volver
+                      </el-button>
+                  </b-link>
                   <b-navbar-toggle target="nav_collapse"/>
 
                   <b-collapse is-nav id="nav_collapse" class="bg-navbar">
@@ -19,11 +24,12 @@
                           <i class="fas fa-arrow-left padding-icon"></i>Volver
                         </el-button>
                       </b-link>-->
+                      <br/>
                       <el-button size="mini" @click="busquedaAv = true">
                         <i class="fas fa-search padding-icon"></i>Busqueda avanzada
                       </el-button>
+                      <br/>
                       <el-input
-                        style="width: 300px; margin-left: 5px;"
                         placeholder="Filtrar por transacción, formulario, o impuesto"
                         prefix-icon="el-icon-search"
                         v-model="filtradoRecientes"
@@ -34,9 +40,9 @@
                     <!-- Right aligned nav items -->
                     <b-navbar-nav class="ml-auto">
                       <b-nav-item href="#">
-                        <i class="fas fa-print" style="margin-right: 15px;"></i> Imprimir
+                        <i class="fas fa-print"></i> Imprimir
                       </b-nav-item>
-                      <b-nav-item disabled style="margin-left: 10px;">
+                      <b-nav-item disabled>
                         <i class="fas fa-file-export"></i>
                       </b-nav-item>
                       <b-nav-item-dropdown text="Exportar">
@@ -66,10 +72,18 @@
               <!-- TAB COMPROBANTES -->
               <el-tab-pane label="Comprobantes" name="comprobantes">
                 <!-- nav bar -->
+                
                 <b-navbar toggleable="lg" type="light" variant="info">
+                <b-link to="/inicio">
+                  <el-button size="mini">
+                    <i class="fas fa-arrow-left padding-icon"></i>Volver
+                  </el-button>
+                </b-link>
                   <b-navbar-toggle target="nav_collapse"/>
+                    
 
                   <b-collapse is-nav id="nav_collapse" class="bg-navbar">
+                  <br/>
                     <b-navbar-nav>
                       <!-- <b-link>
                         <el-button size="mini">
@@ -79,9 +93,8 @@
                       <el-button size="mini" @click="busquedaAv = true">
                         <i class="fas fa-search padding-icon"></i>Busqueda avanzada
                       </el-button>
-
+                      <br/>
                       <el-input
-                        style="width: 300px; margin-left: 5px;"
                         placeholder="Filtrar por transacción, formulario, o impuesto"
                         prefix-icon="el-icon-search"
                         v-model="filtradoTodos"

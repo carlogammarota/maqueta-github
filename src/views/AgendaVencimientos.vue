@@ -10,15 +10,16 @@
           <b-col sm="12" md="12">
             <!-- nav bar -->
             <b-navbar toggleable="lg" type="light" variant="info">
+              <b-link to="/inicio">
+                      <el-button size="mini">
+                        <i class="fas fa-arrow-left padding-icon"></i>Volver
+                      </el-button>
+                </b-link>
               <b-navbar-toggle target="nav_collapse"/>
-
-              <b-collapse is-nav id="nav_collapse" class="bg-navbar">
+                <b-collapse is-nav id="nav_collapse" class="bg-navbar">
+              <br/>
                 <b-navbar-nav>
-                  <b-link to="/inicio">
-                    <el-button size="mini">
-                      <i class="fas fa-arrow-left padding-icon"></i>Volver
-                    </el-button>
-                  </b-link>
+                 
                     <el-button size="mini" class="text-left" @click="recordatorioPopup = true">
                       <i class="fas fa-calendar-alt padding-icon"></i>Recordarme
                     </el-button>

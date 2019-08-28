@@ -23,13 +23,6 @@ export default {
         },
     },
     getters: {
-        //Inicio
-        getDeudas(state){
-          console.log("state.saldos", state.saldos)
-          return state.saldos
-
-        },
-
         getDetalleDePunitorios(state){
           let formulario345 = getComprobantes.state.clearItem.f345
           let SegunImpuestoyPeriodo = []

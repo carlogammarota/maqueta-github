@@ -6,17 +6,15 @@
           <b-col sm="12" md="12">
             <!-- nav bar -->
             <b-navbar toggleable="lg" type="light" variant="info">
-              <b-navbar-toggle target="nav_collapse"/>
-
-              <b-collapse is-nav id="nav_collapse" class="bg-navbar">
-                <b-navbar-nav>
-                  <b-link>
+             <b-navbar-nav>
+                  <b-link to="/inicio">
                     <el-button size="mini">
                       <i class="fas fa-arrow-left padding-icon"></i>Volver
                     </el-button>
                   </b-link>
                 </b-navbar-nav>
-
+              <b-navbar-toggle target="nav_collapse"/>
+              <b-collapse is-nav id="nav_collapse" class="bg-navbar">
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                   <b-nav-item href="#">
@@ -34,7 +32,6 @@
               </b-collapse>
             </b-navbar>
             <v-divider></v-divider>
-
             
           </b-col>
         </b-row>

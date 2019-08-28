@@ -13,13 +13,19 @@
               <el-tab-pane label="Declaraciones Juradas" name="ddjj">
                 <!-- nav bar -->
                 <b-navbar toggleable="lg" type="light" variant="info">
+                  <b-link to="/inicio">
+                      <el-button size="mini">
+                        <i class="fas fa-arrow-left padding-icon"></i>Volver
+                      </el-button>
+                  </b-link>
                   <b-navbar-toggle target="nav_collapse" />
 
                   <b-collapse is-nav id="nav_collapse" class="bg-navbar">
                     <b-navbar-nav>
-                      <el-input style="width: 300px; margin-left: 5px;" placeholder="Filtrar por transacción, impuesto, o periodo" prefix-icon="el-icon-search" v-model="filtradoDDJJ" @input="filtrarBusquedaDDJJ()"></el-input>
-
-                      <el-button size="mini" style="margin-left: 5px" @click="nuevaDeclaracion = true; mode = 'new'">
+                      <br/>
+                      <el-input  placeholder="Filtrar por transacción, impuesto, o periodo" prefix-icon="el-icon-search" v-model="filtradoDDJJ" @input="filtrarBusquedaDDJJ()"></el-input>
+                      <br/>
+                      <el-button size="mini" @click="nuevaDeclaracion = true; mode = 'new'">
                         <i class="fas fa-file-alt padding-icon"></i>Nueva Declaración Jurada
                       </el-button>
                     </b-navbar-nav>
