@@ -69,17 +69,22 @@
               <el-tab-pane label="Borradores" name="borradores">
                 <!-- nav bar -->
                 <b-navbar toggleable="lg" type="light" variant="info">
+                  <b-link to="/inicio">
+                    <el-button size="mini">
+                      <i class="fas fa-arrow-left padding-icon"></i>Volver
+                    </el-button>
+                  </b-link>
                   <b-navbar-toggle target="nav_collapse" />
-
                   <b-collapse is-nav id="nav_collapse" class="bg-navbar">
+                  <br/>
                     <b-navbar-nav>
-                      <el-input style="width: 300px; margin-left: 5px;" placeholder="Filtrar por Impuesto y Periodo" prefix-icon="el-icon-search" v-model="filtradoBorradores" @input="filtrarBusqueda()"></el-input>
+                      <el-input placeholder="Filtrar por Impuesto y Periodo" prefix-icon="el-icon-search" v-model="filtradoBorradores" @input="filtrarBusqueda()"></el-input>
                     </b-navbar-nav>
 
                     <!-- Right aligned nav items -->
                     <b-navbar-nav class="ml-auto">
                       <b-nav-item href="#">
-                        <i class="fas fa-print" style="margin-right: 15px;"></i> Imprimir
+                        <i class="fas fa-print"></i> Imprimir
                       </b-nav-item>
                     </b-navbar-nav>
                   </b-collapse>

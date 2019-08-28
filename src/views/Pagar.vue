@@ -16,6 +16,7 @@
 
               <b-collapse is-nav id="nav_collapse" class="bg-navbar">
               <br/>
+              
                 <b-navbar-nav>
                 
                   <el-input
@@ -28,7 +29,7 @@
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                   <b-nav-item href="#">
-                    <i class="fas fa-print" style="margin-right: 15px;"></i> Imprimir
+                    <i class="fas fa-print" ></i> Imprimir
                   </b-nav-item>
                   <b-nav-item disabled style="margin-left: 10px;">
                     <i class="fas fa-file-export"></i>
