@@ -10,6 +10,8 @@
                   style="width: 150px"
                 ></el-date-picker>
               </span>
+              <br/>
+              <br/>
               <span class="picker-text">
                 Hasta:
                 <el-date-picker
@@ -30,6 +32,8 @@
                   style="width: 150px"
                 ></el-date-picker>
               </span>
+              <br/>
+              <br/>
               <span class="picker-text">
                 Hasta:
                 <el-date-picker

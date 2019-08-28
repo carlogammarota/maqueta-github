@@ -137,7 +137,7 @@
             </el-tabs>
 
             <!-- popup -->
-            <el-dialog title="Busqueda avanzada" :visible.sync="busquedaAv" width="600px">
+            <el-dialog title="Busqueda avanzada" :visible.sync="busquedaAv">
               <b-row>
                 <b-col>
                   <b-card class="text-left">

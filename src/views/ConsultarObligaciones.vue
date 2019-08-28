@@ -40,11 +40,11 @@
             <b-card class="text-left" header="">
                   <span class="picker-text">
                     Desde:
-                    <el-date-picker v-model="desde" type="month" placeholder="Periodo" style="width: 150px"></el-date-picker>
+                    <el-date-picker v-model="desde" type="month" placeholder="Periodo" style="min-width: 100px"></el-date-picker>
                   </span>
                   <span class="picker-text">
                     Hasta:
-                    <el-date-picker v-model="hasta" type="month" placeholder="Periodo" style="width: 150px"></el-date-picker>
+                    <el-date-picker v-model="hasta" type="month" placeholder="Periodo" style="min-width: 100px"></el-date-picker>
                   </span>
                   
                   <el-button class="text-left" type="primary" size="mini" @click="BuscarPorPeriodo()">Buscar</el-button>
