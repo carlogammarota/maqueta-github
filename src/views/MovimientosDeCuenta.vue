@@ -53,11 +53,10 @@
                   <h6>Saldo<span class="right">$ 0</span></h6>
                   <v-divider></v-divider>
                     </b-card>
-                    <TablaResponsive class="hidden-md-and-up" :data="getMovimientosImpuestoPeriodo"></TablaResponsive>     
+                    <!-- <TablaResponsive class="hidden-md-and-up" :data="getMovimientosImpuestoPeriodo"></TablaResponsive>      -->
                 </b-col>
                 <b-col cols="12">
                  <el-table-wrapper
-                  class="hidden-md-and-down"
                   :data="getMovimientosImpuestoPeriodo"
                   :columns="tableColumns"
                   :pagination="pagination"

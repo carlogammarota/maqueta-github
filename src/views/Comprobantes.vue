@@ -54,9 +54,8 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
-                <TablaResponsive class="hidden-md-and-up" :data="getFilteredRecientes"></TablaResponsive>
+                <!-- <TablaResponsive class="hidden-md-and-up" :data="getFilteredRecientes"></TablaResponsive> -->
                 <el-table-wrapper
-                  class="hidden-md-and-down"
                   :data="getFilteredRecientes"
                   :columns="columns"
                   :pagination="pagination"
@@ -119,9 +118,8 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
-                <TablaResponsive class="hidden-md-and-up" :data="getFilteredItems"></TablaResponsive>
+                <!-- <TablaResponsive class="hidden-md-and-up" :data="getFilteredItems"></TablaResponsive> -->
                 <el-table-wrapper
-                  class="hidden-md-and-down"
                   :data="getFilteredItems"
                   :columns="columns"
                   :pagination="pagination"
@@ -177,6 +175,13 @@ export default {
     return {
       columns: [
         {
+          prop: "impuesto",
+          label: "Impuesto",
+          sortable: true,
+          fixed: true,
+          width: 100
+        },
+        {
           prop: "idTicket",
           label: "Transacción"
         },
@@ -191,11 +196,6 @@ export default {
         {
           prop: "fechaOperacion",
           label: "Fecha operación",
-          sortable: true
-        },
-        {
-          prop: "impuesto",
-          label: "Impuesto",
           sortable: true
         },
         {

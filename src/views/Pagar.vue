@@ -29,7 +29,7 @@
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                   <b-nav-item href="#">
-                    <i class="fas fa-print" ></i> Imprimir
+                    <i class="fas fa-print"></i> Imprimir
                   </b-nav-item>
                   <b-nav-item disabled style="margin-left: 10px;">
                     <i class="fas fa-file-export"></i>
@@ -59,9 +59,9 @@
             <h2 class="bg-featured">Obligaciones adeudadas</h2>
           </b-col>
           <b-col cols="12">
-          <TablaResponsive class="hidden-md-and-up" :data="data"></TablaResponsive>
+          {{data}}
+          <!-- <TablaResponsive class="hidden-md-and-up" :data="data"></TablaResponsive> -->
             <el-table-wrapper
-              class="hidden-md-and-down"
               row-key="id"
               ref="tableDeudas"
               :data="data"
@@ -245,19 +245,23 @@ export default {
       ],
       columns: [
         {
-          type: "selection"
+          type: "selection",
+          width:40
+        },
+        {
+          prop: "impuesto",
+          label: "Impuesto",
+          fixed: true,
+          width:120
+        },
+        {
+          prop: "concepto",
+          label: "Concepto",
         },
         {
           width: 40
         },
-        {
-          prop: "impuesto",
-          label: "Impuesto"
-        },
-        {
-          prop: "concepto",
-          label: "Concepto"
-        },
+        
         {
           prop: "periodo",
           label: "Periodo"

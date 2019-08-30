@@ -65,7 +65,7 @@
         </b-row>
         <b-row>
           
-          <b-col class="hidden-md-and-up" cols="12">
+          <!-- <b-col class="hidden-md-and-up" cols="12">
             <div v-if="viewInmobiliario">
               <h2 class="bg-featured">Inmobiliario</h2>
               <TablaResponsive :data="GetInmobiliario"></TablaResponsive>
@@ -84,9 +84,9 @@
               <h2 class="bg-featured">Ingresos Brutos</h2>
               <TablaResponsive :data="GetIngresosBrutos"></TablaResponsive>
             </div>
-          </b-col>
+          </b-col> -->
 
-          <b-col md="12" class="hidden-sm-and-down">
+          <b-col md="12" >
             <v-divider></v-divider>
               
             <div v-if="viewInmobiliario">
@@ -179,7 +179,7 @@ export default {
           prop: "periodo",
           label: "Periodo",
           sortable: true,
-          width: 180
+          fixed: true 
         },
         {
           prop: "vencimientoPago",

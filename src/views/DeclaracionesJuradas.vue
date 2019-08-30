@@ -47,13 +47,19 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
-                <TablaResponsive class="hidden-md-and-up" :data="getDeclaracionesJuradas"></TablaResponsive>
-                <el-table-wrapper class="hidden-sm-and-down" :data="getDeclaracionesJuradas" :columns="columnsDDJJ" :pagination="pagination" :show-custom-header="false">
+                <!-- <TablaResponsive class="hidden-md-and-up" :data="getDeclaracionesJuradas"></TablaResponsive> -->
+                <el-table-wrapper  :data="getDeclaracionesJuradas" :columns="columnsDDJJ" :pagination="pagination" :show-custom-header="false">
                   <template slot-scope slot="column-slot">
                     <b-link class="obligacion-icon" to="/comprobantes/ticket">
                       <i class="far fa-file-alt size-3x"></i>
                     </b-link>
                   </template>
+                   <el-table-column
+                    fixed
+                    prop="date"
+                    label="Fecha"
+                    width="150">
+                  </el-table-column>
                   <template slot-scope="scope" slot="column-temporalidad">
 
                         <!-- {{scope.row.temporalidad}} -->
@@ -90,13 +96,13 @@
                   </b-collapse>
                 </b-navbar>
                 <v-divider></v-divider>
-                <TablaResponsive class="hidden-md-and-up" :data="getBorradores"></TablaResponsive>
-                <el-table-wrapper class="hidden-sm-and-down" :data="getBorradores" :columns="columnsBorradores" :pagination="pagination" :show-custom-header="false">
-                  <template slot-scope="value" slot="column-acciones">
+                <!-- <TablaResponsive class="hidden-md-and-up" :data="getBorradores"></TablaResponsive> -->
+                <el-table-wrapper  :data="getBorradores" :columns="columnsBorradores" :pagination="pagination" :show-custom-header="false">
+                  <template fixed slot-scope="value" slot="column-acciones">
                     <!--  <el-tag :type="scope.row.tag === 'No disponible' ? 'primary' : 'success'" close-transition="">
         {{scope.row.tag}}
                     </el-tag-->
-
+                    
                     <b-link class="obligacion-icon" @click="editMode(value)">
                       <el-tooltip content="Editar" placement="top" effect="light">
                         <span class="padding-icon">
@@ -171,18 +177,20 @@ export default {
     return {
       columnsDDJJ: [
         {
-          prop: "idTicket",
-          label: "Transacción"
-        },
-        {
           prop: "impuesto",
           label: "Impuesto",
-          sortable: true
+          sortable: true,
+          fixed: true,
+          width:100
         },
         {
           prop: "periodo",
           label: "Periodo",
           sortable: true
+        },
+        {
+          prop: "idTicket",
+          label: "Transacción",
         },
         {
           prop: "fechaOperacion",
@@ -264,7 +272,9 @@ export default {
         {
           prop: "impuesto",
           label: "Impuesto",
-          sortable: true
+          sortable: true,
+          fixed: true,
+          width: 100
         },
         {
           prop: "periodo",

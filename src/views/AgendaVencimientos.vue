@@ -54,9 +54,8 @@
               </b-collapse>
             </b-navbar>
             <v-divider></v-divider>
-            <TablaResponsive class="hidden-md-and-up" :data="getObligaciones"></TablaResponsive>
+            <!-- <TablaResponsive class="hidden-md-and-up" :data="getObligaciones"></TablaResponsive> -->
             <el-table-wrapper
-              class="hidden-md-and-down"
               :data="getObligaciones"
               :columns="columns"
               :pagination="pagination"
@@ -95,7 +94,9 @@ export default {
         {
           prop: "impuesto",
           label: "Impuesto",
-          sortable: true
+          sortable: true,
+          fixed: true,
+          width: 100 
         },
         {
           prop: "periodo",

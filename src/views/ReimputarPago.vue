@@ -335,7 +335,8 @@ export default {
       ],
       tableColumnsDeudas: [
         {
-          type: "selection"
+          type: "selection",
+          fixed:true
         },
         {
           width: 40
