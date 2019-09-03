@@ -26,7 +26,7 @@
                 </b-navbar-nav>
 
                 <!-- popup de recordatorio -->
-                <el-dialog title="Recordatorio" :visible.sync="recordatorioPopup" width="500px">
+                <el-dialog title="Recordatorio" :visible.sync="recordatorioPopup">
                   <el-table :data="dataRecordatorio" >
                     <el-table-column width="40" type="selection"></el-table-column>
                     <el-table-column property="impuesto" label="Impuesto" width="120px"></el-table-column>

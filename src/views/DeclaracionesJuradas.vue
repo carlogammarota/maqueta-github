@@ -23,6 +23,7 @@
                   <b-collapse is-nav id="nav_collapse" class="bg-navbar">
                     <b-navbar-nav>
                       <br/>
+                      <!-- {{dataDDJJ}} -->
                       <el-input  placeholder="Filtrar por transacción, impuesto, o periodo" prefix-icon="el-icon-search" v-model="filtradoDDJJ" @input="filtrarBusquedaDDJJ()"></el-input>
                       <br/>
                       <el-button size="mini" @click="nuevaDeclaracion = true; mode = 'new'">
@@ -48,7 +49,7 @@
                 </b-navbar>
                 <v-divider></v-divider>
                 <!-- <TablaResponsive class="hidden-md-and-up" :data="getDeclaracionesJuradas"></TablaResponsive> -->
-                <el-table-wrapper  :data="getDeclaracionesJuradas" :columns="columnsDDJJ" :pagination="pagination" :show-custom-header="false">
+                <el-table-wrapper  :data="dataDDJJ" :columns="columnsDDJJ" :pagination="pagination" :show-custom-header="false">
                   <template slot-scope slot="column-slot">
                     <b-link class="obligacion-icon" to="/comprobantes/ticket">
                       <i class="far fa-file-alt size-3x"></i>

@@ -59,7 +59,7 @@
             <h2 class="bg-featured">Obligaciones adeudadas</h2>
           </b-col>
           <b-col cols="12">
-          {{data}}
+          <!-- {{data}} -->
           <!-- <TablaResponsive class="hidden-md-and-up" :data="data"></TablaResponsive> -->
             <el-table-wrapper
               row-key="id"

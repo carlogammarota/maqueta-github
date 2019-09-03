@@ -371,6 +371,7 @@ export default {
         },
         
         setFilterTodos (state, data) {
+            // console.log("data", data)
             state.filterTodos = data
         },
 

@@ -8,11 +8,13 @@
               <b-card-body class="p-2">
                 <div class="text-left">
                   <span class="fs-14b">Deuda Total</span>
-                  <span class="right featured-font">$ 385.721,27</span>
+                  <!-- <span class="right featured-font">$ 385.721,27</span> -->
+                  <span class="right featured-font">$ {{sumSaldoDeudorTotal}}</span>
                   <v-divider></v-divider>
                   <h6>
                     Capital Vencido:
-                    <span class="right">$ 370.837,86</span>
+                    <!-- <span class="right">$ 370.837,86</span> -->
+                    <span class="right">$ {{capitalVencido}}</span>
                   </h6>
                   <h6>
                     Capital No Vencido:
@@ -28,7 +30,8 @@
                       </div>
                       <i class="fas fa-info-circle pl-10 fs-12 padding-icon"></i>
                     </el-tooltip>
-                    <span class="right">$ 11.561,80</span>
+                    <!-- <span class="right">$ 11.561,80</span> -->
+                    <span class="right">$ {{sumaInteresesResarcitoriosTotal}}</span>
                   </h6>
                   <h6>
                     Intereses Punitorios:
@@ -39,7 +42,8 @@
                       </div>
                       <i class="fas fa-info-circle pl-10 fs-12 padding-icon"></i>
                     </el-tooltip>
-                    <span class="right">$ 334,37</span>
+                    <!-- <span class="right">$ 334,37</span> -->
+                    <span class="right">$ {{sumaInteresesPunitoriosTotal}}</span>
                   </h6>
                   <v-divider></v-divider>
                 </div>
@@ -101,7 +105,8 @@
               <b-card-body class="p-2">
                 <div class="text-left">
                   <span class="fs-14b">Deuda Seleccionada</span>
-                  <span class="right featured-font">$ 0,00</span>
+                  <!-- <span class="right featured-font">$ 0,00</span> -->
+                  <span class="right featured-font">$  {{sumaSaldoDeudor}}</span>
 
                   <v-divider></v-divider>
                   <h6>
@@ -116,12 +121,14 @@
 
                   <h6>
                     Intereses Resarcitorios:
-                    <span class="right">$ 0,00</span>
+                    <!-- <span class="right">$ 0,00</span> -->
+                    <span class="right">$  {{sumaInteresesResarcitorios}}</span>
                   </h6>
 
                   <h6>
                     Intereses Punitorios:
-                    <span class="right">$ 0,00</span>
+                    <span class="right">$ {{sumaInteresesPunitorios}}</span>
+                    <!-- <span class="right">$ 0,00</span> -->
                   </h6>
                   <v-divider></v-divider>
                 </div>
@@ -217,6 +224,7 @@
                   </table>
                 </template>
                 <data-tables
+                  @selection-change="handleSelectionChange"
                   :data="tableDataInmobiliario"
                   :filters="filters"
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
@@ -292,6 +300,7 @@
                   </table>
                 </template>
                 <data-tables
+                  @selection-change="handleSelectionChange"
                   :data="tableDataAutomotores"
                   :filters="filters"
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
@@ -368,6 +377,7 @@
                 </template>
 
                 <data-tables
+                  @selection-change="handleSelectionChange"
                   :data="tableDataIIBB"
                   :filters="filters"
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
@@ -419,6 +429,7 @@ import store from "@/store/index";
 import SelectImpuesto from "@/views/components/SelectImpuesto";
 import InfoResarcitorios from "@/views/components/InfoResarcitorios";
 import { mapState, mapActions, mapMutations } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: "inicio",
@@ -478,114 +489,114 @@ export default {
       tableSeleccionInmobiliario: [
         {
           periodo: "01/2010",
-          vencimiento: "05/02/2010",
-          saldoDeudor: "$ 1.521,36",
-          saldoFavor: "-",
-          iResarcitorio: "$ 62,25",
-          iPunitorio: "$ 123,56",
+          vencimiento: "05/02/2020",
+          saldoDeudor: 90000,
+          saldoFavor: 0,
+          iResarcitorio: 6225,
+          iPunitorio: 12356,
           estado: "-"
         }
       ],
       tableDataInmobiliario: [
          {
           periodo: "01/2010",
-          vencimiento: "05/02/2010",
-          saldoDeudor: "9.999,99",
-          saldoFavor: "-",
-          iResarcitorio: "$ 62,25",
-          iPunitorio: "$ 123,56",
+          vencimiento: "10/10/2020",
+          saldoDeudor: 99999,
+          saldoFavor: 0,
+          iResarcitorio: 6225,
+          iPunitorio: 12356,
           estado: ""
         },
         {
           periodo: "01/2010",
           vencimiento: "05/02/2010",
-          saldoDeudor: "$ 1.521,36",
-          saldoFavor: "-",
-          iResarcitorio: "$ 62,25",
-          iPunitorio: "$ 123,56",
+          saldoDeudor: 1521,
+          saldoFavor: 0,
+          iResarcitorio: 6225,
+          iPunitorio: 1235,
           estado: ""
         },
         {
           periodo: "02/2010",
           vencimiento: "06/03/2010",
-          saldoDeudor: "$ 1.521,36",
-          saldoFavor: "-",
-          iResarcitorio: "$ 58,32",
-          iPunitorio: "$ 110,56",
+          saldoDeudor: 1521,
+          saldoFavor: 0,
+          iResarcitorio: 5832,
+          iPunitorio: 11056,
           estado: "-"
         },
         {
           periodo: "03/2011",
           vencimiento: "05/04/2010",
-          saldoDeudor: "$ 1.612,53",
-          saldoFavor: "-",
-          iResarcitorio: "$ 32,25",
-          iPunitorio: "$ 100,25",
+          saldoDeudor: 1612,
+          saldoFavor: 0,
+          iResarcitorio: 3225,
+          iPunitorio: 10025,
           estado: "-"
         },
         {
           periodo: "04/2011",
           vencimiento: "06/05/2011",
-          saldoDeudor: "$ 1.612,53",
-          saldoFavor: "-",
-          iResarcitorio: "-",
-          iPunitorio: "-",
+          saldoDeudor: 1612,
+          saldoFavor: 0,
+          iResarcitorio: 55956,
+          iPunitorio: 660,
           estado: "-"
         },
         {
           periodo: "03/2015",
           vencimiento: "06/04/2015",
-          saldoDeudor: "$ 2.536,21",
-          saldoFavor: "-",
-          iResarcitorio: "$ 15,82",
-          iPunitorio: "-",
+          saldoDeudor: 2536,
+          saldoFavor: 0,
+          iResarcitorio: 15.82,
+          iPunitorio: 299,
           estado: "-"
         },
         {
           periodo: "01/2016",
           vencimiento: "05/02/2016",
-          saldoDeudor: "$ 2.987,24",
-          saldoFavor: "-",
-          iResarcitorio: "$ 12,32",
-          iPunitorio: "-",
+          saldoDeudor: 2987,
+          saldoFavor: 0,
+          iResarcitorio: 12.32,
+          iPunitorio: 3544,
           estado: "-"
         },
         {
           periodo: "03/2019",
           vencimiento: "06/04/2019",
-          saldoDeudor: "$ 2.987,24",
-          saldoFavor: "-",
-          iResarcitorio: "-",
-          iPunitorio: "-",
+          saldoDeudor: 2987,
+          saldoFavor: 0,
+          iResarcitorio: 4685,
+          iPunitorio: 322,
           estado: "-"
         }
       ],
       tableDataAutomotores: [
         {
           periodo: "01/2010",
-          vencimiento: "14/03/2010",
-          saldoDeudor: "$ 1.456,00",
-          saldoFavor: "-",
-          iResarcitorio: "$ 11,32",
-          iPunitorio: "-",
+          vencimiento: "14/09/2019",
+          saldoDeudor: 145600,
+          saldoFavor: 0,
+          iResarcitorio: 1132,
+          iPunitorio: 475,
           estado: ""
         },
         {
           periodo: "02/2010",
           vencimiento: "15/05/2010",
-          saldoDeudor: "-",
-          saldoFavor: "$ 1.456,00",
-          iResarcitorio: "$ 11,32",
-          iPunitorio: "-",
+          saldoDeudor: 0,
+          saldoFavor: 1456,
+          iResarcitorio: 1132,
+          iPunitorio: 399,
           estado: ""
         },
         {
           periodo: "03/2010",
           vencimiento: "16/08/2010",
-          saldoDeudor: "-",
-          saldoFavor: "$ 1.456,00",
-          iResarcitorio: "$ 10,35",
-          iPunitorio: "-",
+          saldoDeudor: 0,
+          saldoFavor: 1456,
+          iResarcitorio: 1035,
+          iPunitorio: 465,
           estado: ""
         }
       ],
@@ -593,73 +604,73 @@ export default {
         {
           periodo: "01/2017",
           vencimiento: "10/02/2017",
-          saldoDeudor: "$ 75.548,23",
-          saldoFavor: "-",
-          iResarcitorio: "$ 2.530,36",
-          iPunitorio: "$ 123,56",
+          saldoDeudor: 75.548,
+          saldoFavor: 0,
+          iResarcitorio: 2530,
+          iPunitorio: 12356,
           estado: "En término"
         },
         {
           periodo: "02/2017",
           vencimiento: "10/03/2017",
-          saldoDeudor: "$ 68.256,32",
-          saldoFavor: "-",
-          iResarcitorio: "$ 2.035,22",
-          iPunitorio: "$ 110,56",
+          saldoDeudor: 68.256,
+          saldoFavor: 0,
+          iResarcitorio: 2035,
+          iPunitorio: 11056,
           estado: "Fuera de término"
         },
         {
           periodo: "03/2017",
           vencimiento: "12/04/2017",
-          saldoDeudor: "$ 52.369,25",
-          saldoFavor: "-",
-          iResarcitorio: "$ 2.306,25",
-          iPunitorio: "-",
+          saldoDeudor: 52369,
+          saldoFavor: 0,
+          iResarcitorio: 2306,
+          iPunitorio: 981,
           estado: "Falta presentación"
         },
         {
           periodo: "04/2017",
           vencimiento: "12/05/2017",
-          saldoDeudor: "-",
-          saldoFavor: "$ 8.123,51",
-          iResarcitorio: "-",
-          iPunitorio: "-",
+          saldoDeudor: 5000,
+          saldoFavor: 12351,
+          iResarcitorio: 59666,
+          iPunitorio: 634,
           estado: "En término"
         },
         {
           periodo: "05/2017",
           vencimiento: "15/06/2017",
-          saldoDeudor: "-",
-          saldoFavor: "-",
-          iResarcitorio: "-",
-          iPunitorio: "-",
+          saldoDeudor: 65945,
+          saldoFavor: 0,
+          iResarcitorio: 46584,
+          iPunitorio: 400,
           estado: "En término"
         },
         {
           periodo: "03/2018",
-          vencimiento: "08/04/2018",
-          saldoDeudor: "$ 75.325,21",
-          saldoFavor: "-",
-          iResarcitorio: "$ 1.605,25",
-          iPunitorio: "-",
+          vencimiento: "08/11/2018",
+          saldoDeudor: 75325,
+          saldoFavor: 0,
+          iResarcitorio: 1605,
+          iPunitorio: 800,
           estado: "En término"
         },
         {
           periodo: "01/2019",
           vencimiento: "11/02/2019",
-          saldoDeudor: "$ 89.248,15",
-          saldoFavor: "-",
-          iResarcitorio: "$ 2.910,23",
-          iPunitorio: "-",
+          saldoDeudor: 89248,
+          saldoFavor: 0,
+          iResarcitorio: 2910,
+          iPunitorio: 1300,
           estado: "En término"
         },
         {
           periodo: "02/2019",
-          vencimiento: "13/03/2019",
-          saldoDeudor: "-",
-          saldoFavor: "-",
-          iResarcitorio: "-",
-          iPunitorio: "-",
+          vencimiento: "13/11/2019",
+          saldoDeudor: 13456,
+          saldoFavor: 0,
+          iResarcitorio: 4520,
+          iPunitorio: 1200,
           estado: "En término"
         }
       ],
@@ -687,21 +698,160 @@ export default {
           }
         ]
       },
-      totalSaldoDeudorInmobiliario: 0
-    };
+      totalSaldoDeudorInmobiliario: 0,
+      multipleSelection: [],
+      sumaSaldoDeudor: 0,
+      sumaInteresesResarcitorios: 0,
+      sumaInteresesPunitorios: 0,
+      sumSaldoDeudorTotal: 0,
+      sumaInteresesResarcitoriosTotal: 0,
+      sumaInteresesPunitoriosTotal: 0,
+      capitalVencido: 0
+    }
+    
   },
   methods: {
     filterTag(value, row) {
       return row.estado === value;
     },
-  },
-  computed: {},
-  mounted() {
-  
+    toggleSelection(rows) {
+      console.log("TEST 2019", row)
+      if (rows) {
+        rows.forEach(row => {
+          this.$refs.multipleTable.toggleRowSelection(row);
+        });
+      } else {
+        this.$refs.multipleTable.clearSelection();
+      }
+    },
+    handleSelectionChange(val) {
+      //DEUDA SELECCIONADA
+      //Suma saldo Deudor
+      this.multipleSelection = val;
+      function sumSaldoDeudor(array){
+        var acum = 0;
+        for (var i = 0; i < array.length; i++){
+          acum = acum + array[i].saldoDeudor;
+          }
+          return acum;
+        }
+      this.sumaSaldoDeudor = sumSaldoDeudor(val)
+      
 
+      //Suma Intereses Resarcitorios
+      // console.log("VAL", val)
+      function sumInteresesResarcitorios(array){
+        var acum = 0;
+        for (var i = 0; i < array.length; i++){
+          acum = acum + array[i].iResarcitorio;
+          // console.log("i", array[i].iResarcitorio)
+          }
+          return acum;
+        }
+        // console.log("total", sumInteresesResarcitorios(val))
+      this.sumaInteresesResarcitorios = sumInteresesResarcitorios(val)
+
+      //Suma Intereses Punitorios
+      function sumaInteresesPunitorios(array){
+        var acum = 0;
+        for (var i = 0; i < array.length; i++){
+          acum = acum + array[i].iPunitorio;
+          }
+          return acum;
+      }
+        // console.log("total", sumInteresesResarcitorios(val))
+      this.sumaInteresesPunitorios = sumaInteresesPunitorios(val)
+
+
+    }
   },
   computed: {
+    // deudaTotal: function () {
+    //   return this.sumaSaldoDeudor
+    //   // return 385.721
+    // },
+    // interesesResarcitorios: function (){
+    //   return this.interesesResarcitorios
+    // }
+  },
+  mounted() {
+    
+    //recorrer tableDataIIBB tableDataAutomotores tableDataInmobiliario y devolver la suma de la columna saldo deudor
 
+      console.log("tableDataIIBB", this.tableDataIIBB)
+      // console.log("tableDataAutomotores", this.tableDataAutomotores)
+      // console.log("tableDataInmobiliario", this.tableDataInmobiliario)
+
+    //DEUDA TOTAL
+    // this.sumSaldoDeudorTotal
+
+      var deudaTotal = 0;
+      for (var i = 0; i < this.tableDataIIBB.length; i++){
+        deudaTotal = deudaTotal + this.tableDataIIBB[i].iPunitorio;
+      }
+      for (var i = 0; i < this.tableDataAutomotores.length; i++){
+        deudaTotal = deudaTotal + this.tableDataAutomotores[i].iPunitorio;
+      }
+      for (var i = 0; i < this.tableDataInmobiliario.length; i++){
+        deudaTotal = deudaTotal + this.tableDataInmobiliario[i].iPunitorio;
+      }
+      this.sumSaldoDeudorTotal = deudaTotal;
+    
+
+    //Intereses Resarcitorios
+
+      var interesesResarcitoriosTotal = 0;
+      for (var i = 0; i < this.tableDataIIBB.length; i++){
+        interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataIIBB[i].iResarcitorio;
+      }
+      for (var i = 0; i < this.tableDataAutomotores.length; i++){
+        interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataAutomotores[i].iResarcitorio;
+      }
+      for (var i = 0; i < this.tableDataInmobiliario.length; i++){
+        interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataInmobiliario[i].iResarcitorio;
+      }
+      this.sumaInteresesResarcitoriosTotal = interesesResarcitoriosTotal;
+
+
+    //Intereses Resarcitorios
+      var sumaInteresesPunitoriosTotal = 0;
+      for (var i = 0; i < this.tableDataIIBB.length; i++){
+        sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataIIBB[i].iPunitorio;
+      }
+      for (var i = 0; i < this.tableDataAutomotores.length; i++){
+        sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataAutomotores[i].iPunitorio;
+      }
+      for (var i = 0; i < this.tableDataInmobiliario.length; i++){
+        sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataInmobiliario[i].iPunitorio;
+      }
+      this.sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal;
+
+
+      //Capital Vencido
+      let fechaActual = moment().format("YYYYMMDD")
+      // console.log("fechaActual", fechaActual)
+      
+      var capitalVencido = 0;
+
+      for (var i = 0; i < this.tableDataIIBB.length; i++){
+        // console.log("asdasdasdasd", moment(this.tableDataIIBB[i].vencimiento).format("YYYYMMDD"))
+        if (moment(this.tableDataIIBB[i].vencimiento).format("YYYYMMDD") < fechaActual) {
+          // console.log("CAPITAL VENCIDO")
+          capitalVencido = capitalVencido + this.tableDataIIBB[i].saldoDeudor;
+        }
+      }
+      for (var i = 0; i < this.tableDataAutomotores.length; i++){
+        if (moment(this.tableDataAutomotores[i].vencimiento).format("YYYYMMDD") < fechaActual) {
+          capitalVencido = capitalVencido + this.tableDataAutomotores[i].saldoDeudor;
+        }
+      }
+      for (var i = 0; i < this.tableDataInmobiliario.length; i++){
+        if (moment(this.tableDataInmobiliario[i].vencimiento).format("YYYYMMDD") < fechaActual) {
+          capitalVencido = capitalVencido + this.tableDataInmobiliario[i].saldoDeudor;
+        }
+      }
+      // console.log("capital vencido arr", capitalVencido)
+      this.capitalVencido = capitalVencido;
   }
 };
 </script>
