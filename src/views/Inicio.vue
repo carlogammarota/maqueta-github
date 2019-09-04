@@ -18,7 +18,8 @@
                   </h6>
                   <h6>
                     Capital No Vencido:
-                    <span class="right">$ 2.987,24</span>
+                    <!-- <span class="right">$ 2.987,24</span> -->
+                    <span class="right">$ {{capitalNoVencido}}</span>
                   </h6>
                   <h6>
                     Intereses Resarcitorios:
@@ -66,7 +67,7 @@
               </b-card-text>
               <v-divider></v-divider>
 
-              <b-link to="operaciones/compensar" class="padding-10">
+              <b-link to="operaciones/compensar" >
                 <el-tooltip placement="top" effect="light">
                   <div slot="content">
                     Es cuando el contribuyente tiene saldo a favor
@@ -78,7 +79,7 @@
               </b-link>
 
               <div class="spacing hidden-md-and-up"></div>
-              <b-link to="operaciones/reimputar" class="padding-10">
+              <b-link to="operaciones/reimputar">
                 <el-tooltip content placement="top" effect="light">
                   <div slot="content">
                     Es cuando el contribuyente tiene saldo a favor, originado a partir de un pago duplicado y/o mal realizado,
@@ -111,12 +112,14 @@
                   <v-divider></v-divider>
                   <h6>
                     Capital Vencido:
-                    <span class="right">$ 0,00</span>
+                    <!-- <span class="right">$ 0,00</span> -->
+                    <span class="right">$ {{capitalVencidoSelect}}</span>
                   </h6>
 
                   <h6>
                     Capital No Vencido:
-                    <span class="right">$ 0,00</span>
+                    <!-- <span class="right">$ 0,00</span> -->
+                    <span class="right">$ {{capitalNoVencidoSelect}}</span>
                   </h6>
 
                   <h6>
@@ -193,6 +196,7 @@
                       </th>
                       <th width="230">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
+                          <!-- <h3>$ 10.178,70</h3> -->
                           <h3>$ 10.178,70</h3>
                         </el-tooltip>
                       </th>
@@ -490,7 +494,7 @@ export default {
         {
           periodo: "01/2010",
           vencimiento: "05/02/2020",
-          saldoDeudor: 90000,
+          saldoDeudor: 90.000,
           saldoFavor: 0,
           iResarcitorio: 6225,
           iPunitorio: 12356,
@@ -501,7 +505,7 @@ export default {
          {
           periodo: "01/2010",
           vencimiento: "10/10/2020",
-          saldoDeudor: 99999,
+          saldoDeudor: 99.999,
           saldoFavor: 0,
           iResarcitorio: 6225,
           iPunitorio: 12356,
@@ -510,7 +514,7 @@ export default {
         {
           periodo: "01/2010",
           vencimiento: "05/02/2010",
-          saldoDeudor: 1521,
+          saldoDeudor: 1.521,
           saldoFavor: 0,
           iResarcitorio: 6225,
           iPunitorio: 1235,
@@ -519,7 +523,7 @@ export default {
         {
           periodo: "02/2010",
           vencimiento: "06/03/2010",
-          saldoDeudor: 1521,
+          saldoDeudor: 1.521,
           saldoFavor: 0,
           iResarcitorio: 5832,
           iPunitorio: 11056,
@@ -528,7 +532,7 @@ export default {
         {
           periodo: "03/2011",
           vencimiento: "05/04/2010",
-          saldoDeudor: 1612,
+          saldoDeudor: 1.612,
           saldoFavor: 0,
           iResarcitorio: 3225,
           iPunitorio: 10025,
@@ -537,7 +541,7 @@ export default {
         {
           periodo: "04/2011",
           vencimiento: "06/05/2011",
-          saldoDeudor: 1612,
+          saldoDeudor: 1.612,
           saldoFavor: 0,
           iResarcitorio: 55956,
           iPunitorio: 660,
@@ -546,7 +550,7 @@ export default {
         {
           periodo: "03/2015",
           vencimiento: "06/04/2015",
-          saldoDeudor: 2536,
+          saldoDeudor: 2.536,
           saldoFavor: 0,
           iResarcitorio: 15.82,
           iPunitorio: 299,
@@ -555,7 +559,7 @@ export default {
         {
           periodo: "01/2016",
           vencimiento: "05/02/2016",
-          saldoDeudor: 2987,
+          saldoDeudor: 2.987,
           saldoFavor: 0,
           iResarcitorio: 12.32,
           iPunitorio: 3544,
@@ -575,7 +579,7 @@ export default {
         {
           periodo: "01/2010",
           vencimiento: "14/09/2019",
-          saldoDeudor: 145600,
+          saldoDeudor: 14.5600,
           saldoFavor: 0,
           iResarcitorio: 1132,
           iPunitorio: 475,
@@ -621,8 +625,8 @@ export default {
         },
         {
           periodo: "03/2017",
-          vencimiento: "12/04/2017",
-          saldoDeudor: 52369,
+          vencimiento: "12/11/2017",
+          saldoDeudor: 52.369,
           saldoFavor: 0,
           iResarcitorio: 2306,
           iPunitorio: 981,
@@ -630,8 +634,8 @@ export default {
         },
         {
           periodo: "04/2017",
-          vencimiento: "12/05/2017",
-          saldoDeudor: 5000,
+          vencimiento: "12/11/2017",
+          saldoDeudor: 5.000,
           saldoFavor: 12351,
           iResarcitorio: 59666,
           iPunitorio: 634,
@@ -639,8 +643,8 @@ export default {
         },
         {
           periodo: "05/2017",
-          vencimiento: "15/06/2017",
-          saldoDeudor: 65945,
+          vencimiento: "15/11/2017",
+          saldoDeudor: 65.945,
           saldoFavor: 0,
           iResarcitorio: 46584,
           iPunitorio: 400,
@@ -649,7 +653,7 @@ export default {
         {
           periodo: "03/2018",
           vencimiento: "08/11/2018",
-          saldoDeudor: 75325,
+          saldoDeudor: 75.325,
           saldoFavor: 0,
           iResarcitorio: 1605,
           iPunitorio: 800,
@@ -658,7 +662,7 @@ export default {
         {
           periodo: "01/2019",
           vencimiento: "11/02/2019",
-          saldoDeudor: 89248,
+          saldoDeudor: 89.248,
           saldoFavor: 0,
           iResarcitorio: 2910,
           iPunitorio: 1300,
@@ -667,7 +671,7 @@ export default {
         {
           periodo: "02/2019",
           vencimiento: "13/11/2019",
-          saldoDeudor: 13456,
+          saldoDeudor: 13.456,
           saldoFavor: 0,
           iResarcitorio: 4520,
           iPunitorio: 1200,
@@ -706,8 +710,14 @@ export default {
       sumSaldoDeudorTotal: 0,
       sumaInteresesResarcitoriosTotal: 0,
       sumaInteresesPunitoriosTotal: 0,
-      capitalVencido: 0
-    }
+      capitalVencido: 0,
+      capitalNoVencido: 0,
+      capitalVencidoSelect: 0,
+      capitalNoVencidoSelect: 0,
+      Inmobiliario: 0,
+      saldoDeudorAutomotores: 0,
+      saldoDeudorInmobiliario: 0,
+      }
     
   },
   methods: {
@@ -763,6 +773,63 @@ export default {
       this.sumaInteresesPunitorios = sumaInteresesPunitorios(val)
 
 
+      // this.capitalVencidoSelect = val[0].saldoDeudor
+
+
+       //Capital Vencido
+      if (val.length > 1) {
+        let fechaActual = moment().format("YYYYMMDD")
+        // console.log("fechaActual", fechaActual)
+        var capitalVencidoSelect = 0;
+        console.log("Selected", val)
+        for (var i = 0; i < val.length; i++){
+          // console.log("asdasdasdasd", moment(this.tableDataIIBB[i].vencimiento).format("YYYYMMDD"))
+          if (moment(val[i].vencimiento).isBefore(moment().format("DD/MM/YYYY"))) {
+            // console.log("CAPITAL VENCIDO")
+            capitalVencidoSelect = capitalVencidoSelect + val[i].saldoDeudor;
+          } 
+        }
+        this.capitalVencidoSelect = capitalVencidoSelect;
+      } 
+      else if (val.length == 0) {
+        this.capitalVencidoSelect = 0
+      } else {
+        this.capitalVencidoSelect = val[0].saldoDeudor
+      } 
+
+
+      //Capital No Vencido
+      // moment('2010-10-20').isBefore('2010-10-21');
+      if (val.length > 1) {
+        // let fechaActual = moment()
+        // console.log("fechaActual", fechaActual)
+        var capitalNoVencidoSelect = 0;
+        console.log("Selected", val)
+        for (var i = 0; i < val.length; i++){
+          // console.log("asdasdasdasd", moment(this.tableDataIIBB[i].vencimiento).format("YYYYMMDD"))
+          
+          if (!moment(val[i].vencimiento).isBefore(moment().format("DD/MM/YYYY"))) {
+            // console.log("CAPITAL VENCIDO", moment(val[i].vencimiento).isBefore(moment().format("DD/MM/YYYY"))
+            capitalNoVencidoSelect = capitalNoVencidoSelect + val[i].saldoDeudor;
+          } 
+        }
+        this.capitalNoVencidoSelect = capitalNoVencidoSelect;
+      } else if (val.length == 0) {
+        this.capitalNoVencidoSelect = 0
+      } else {
+        this.capitalNoVencidoSelect = val[0].saldoDeudor
+      } 
+     
+
+
+
+
+
+
+
+
+
+
     }
   },
   computed: {
@@ -783,17 +850,32 @@ export default {
       // console.log("tableDataInmobiliario", this.tableDataInmobiliario)
 
     //DEUDA TOTAL
-    // this.sumSaldoDeudorTotal
+
+      
 
       var deudaTotal = 0;
+      
+
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         deudaTotal = deudaTotal + this.tableDataIIBB[i].iPunitorio;
+
+        //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
+        this.Inmobiliario = this.saldoDeudorIIBB + this.tableDataIIBB[i].saldoDeudor
+        console.log("Inmobiliario",this.Inmobiliario)
       }
       for (var i = 0; i < this.tableDataAutomotores.length; i++){
         deudaTotal = deudaTotal + this.tableDataAutomotores[i].iPunitorio;
+
+        //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
+        this.saldoDeudorAutomotores = this.saldoDeudorAutomotores + this.tableDataIIBB[i].saldoDeudor
+        console.log("saldoDeudorAutomotores",this.saldoDeudorAutomotores)
       }
       for (var i = 0; i < this.tableDataInmobiliario.length; i++){
         deudaTotal = deudaTotal + this.tableDataInmobiliario[i].iPunitorio;
+
+        //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
+        this.saldoDeudorInmobiliario = this.saldoDeudorInmobiliario + this.tableDataIIBB[i].saldoDeudor
+        console.log("saldoDeudorInmobiliario",this.saldoDeudorInmobiliario)
       }
       this.sumSaldoDeudorTotal = deudaTotal;
     
@@ -813,7 +895,7 @@ export default {
       this.sumaInteresesResarcitoriosTotal = interesesResarcitoriosTotal;
 
 
-    //Intereses Resarcitorios
+    //Intereses Punitorios
       var sumaInteresesPunitoriosTotal = 0;
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataIIBB[i].iPunitorio;
@@ -824,13 +906,12 @@ export default {
       for (var i = 0; i < this.tableDataInmobiliario.length; i++){
         sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataInmobiliario[i].iPunitorio;
       }
-      this.sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal;
+      this.sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal.toFixed(2);
 
 
       //Capital Vencido
       let fechaActual = moment().format("YYYYMMDD")
       // console.log("fechaActual", fechaActual)
-      
       var capitalVencido = 0;
 
       for (var i = 0; i < this.tableDataIIBB.length; i++){
@@ -850,8 +931,37 @@ export default {
           capitalVencido = capitalVencido + this.tableDataInmobiliario[i].saldoDeudor;
         }
       }
-      // console.log("capital vencido arr", capitalVencido)
-      this.capitalVencido = capitalVencido;
+      console.log("capital vencido arr", capitalVencido)
+      this.capitalVencido = capitalVencido.toFixed(2);
+
+
+
+      //Capital No Vencido
+      // let fechaActual = moment().format("YYYYMMDD")
+      // console.log("fechaActual", fechaActual)
+      var capitalNoVencido = 0;
+
+      for (var i = 0; i < this.tableDataIIBB.length; i++){
+        // console.log("asdasdasdasd", moment(this.tableDataIIBB[i].vencimiento).format("YYYYMMDD"))
+        if (moment(this.tableDataIIBB[i].vencimiento).format("YYYYMMDD") >= fechaActual) {
+          // console.log("CAPITAL VENCIDO")
+          capitalNoVencido = capitalNoVencido + this.tableDataIIBB[i].saldoDeudor;
+        }
+      }
+      for (var i = 0; i < this.tableDataAutomotores.length; i++){
+        if (moment(this.tableDataAutomotores[i].vencimiento).format("YYYYMMDD") >= fechaActual) {
+          capitalNoVencido = capitalNoVencido + this.tableDataAutomotores[i].saldoDeudor;
+        }
+      }
+      for (var i = 0; i < this.tableDataInmobiliario.length; i++){
+        if (moment(this.tableDataInmobiliario[i].vencimiento).format("YYYYMMDD") >= fechaActual) {
+          capitalNoVencido = capitalNoVencido + this.tableDataInmobiliario[i].saldoDeudor;
+        }
+      }
+      console.log("capital no", capitalNoVencido)
+      this.capitalNoVencido = capitalNoVencido.toFixed(2);
+      
+
   }
 };
 </script>
