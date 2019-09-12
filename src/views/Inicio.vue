@@ -3,7 +3,7 @@
     <b-card class="text-center">
       <b-container style="padding: 0px">
         <b-row align-h="center">
-          <b-col sm="12" md="4">
+          <b-col sm="12" md="6" lg="4">
             <b-card no-body class="bg-info">
               <b-card-body class="p-2">
                 <div class="text-left">
