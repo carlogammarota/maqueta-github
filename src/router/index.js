@@ -49,7 +49,7 @@ import DetalleSaldoLD from '@/views/mobile/DetalleSLD'
 Vue.use(Router)
 
 let router = new Router({
-  mode: 'hash',
+  mode: 'history',
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
