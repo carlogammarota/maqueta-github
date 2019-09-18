@@ -32,11 +32,11 @@
                   </el-step>
                   <el-step title="Importe" description="Ingrese el importe a compensar"></el-step>
                 </el-steps>
-                <el-button class="mt-20" type="primary" size="mini" @click="next">Paso Siguiente</el-button>
+                <el-button  v-show="isActive" class="mt-20" type="primary" size="mini" @click="next">Paso Siguiente</el-button>
                 <v-divider></v-divider>
                 <el-tabs v-model="activeTab">
                   <!-- TAB OBLIGACIONES -->
-                  <el-tab-pane label="Obligaciones con Saldo a Favor" name="obligaciones">
+                  <el-tab-pane label="Obligaciones con Saldo a Favor" name="obligaciones" disabled>
                     <h6>Selecciones una fila dentro de las obligaciones con saldo a favor. Solo se permitirá la selección de una obligación por vez</h6>
                     <v-divider></v-divider>
                     <!-- nav bar -->
@@ -91,7 +91,7 @@
                     <el-button size="mini" @click="setCurrent()">Borrar selección</el-button>
                   </el-tab-pane>
                   <!-- TAB DEUDAS -->
-                  <el-tab-pane label="Deudas Compensables" name="deudas">
+                  <el-tab-pane label="Deudas Compensables" name="deudas" disabled>
                     <h6>Selecciones una fila dentro de las deudas que tiene para compensar. Solo se permitirá la selección de una deuda por vez</h6>
                     <v-divider></v-divider>
                     <!-- nav bar -->
@@ -146,7 +146,7 @@
                     <el-button size="mini" @click="setCurrent()">Borrar selección</el-button>
                   </el-tab-pane>
                   <!-- TAB IMPORTE -->
-                  <el-tab-pane label="Importe" name="importe">
+                  <el-tab-pane label="Importe" name="importe" disabled>
                     <b-col md="12" class="no-padding">
                       <vue-numeric
                         v-bind:min="0"
@@ -155,12 +155,14 @@
                         precision= "2"
                         v-model="monto"
                       ></vue-numeric>
-                      <el-button
-                        class="mt-20"
-                        type="primary"
-                        size="mini"
-                        style="margin-left: 20px"
-                      >Compensar ahora</el-button>
+                      <b-link to="../comprobantes/ticket">
+                        <el-button
+                          class="mt-20"
+                          type="primary"
+                          size="mini"
+                          style="margin-left: 20px"
+                        >Compensar ahora</el-button>
+                      </b-link>
                       <v-divider></v-divider>
                       <h2>Impuesto a compensar: Inmobiliario | Periodo: 2010/01 | Importe a compensar: $ {{ monto }}</h2>
                       <v-divider></v-divider>
@@ -382,7 +384,8 @@ export default {
       activeTab: "obligaciones",
       monto: 0,
       radio: 0,
-      currentRow: null
+      currentRow: null,
+      isActive: true
     };
   },
   methods: {
@@ -390,7 +393,20 @@ export default {
       return row.tag === value;
     },
     next() {
-      if (this.active++ > 2) this.active = 0;
+      if (this.active++ > 1){
+        this.isActive = false
+      } 
+      // this.active = 0;
+      console.log(this.active)
+      if(this.active == 0){
+        this.activeTab = "obligaciones"
+      }
+      if (this.active == 1) {
+        this.activeTab = "deudas"
+      }
+      if (this.active == 2) {
+        this.activeTab = "importe"
+      }
     },
     setCurrentObligacion() {
       this.$refs.tableObligaciones.setCurrentRow(row);

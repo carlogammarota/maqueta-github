@@ -9,17 +9,20 @@
                 <div class="text-left">
                   <span class="fs-14b">Deuda Total</span>
                   <!-- <span class="right featured-font">$ 385.721,27</span> -->
-                  <span class="right featured-font">$ {{sumSaldoDeudorTotal}}</span>
+                  <!-- <span class="right featured-font">$ {{sumSaldoDeudorTotal}}</span> -->
+                  <span class="right featured-font"><vue-numeric read-only :precision="2" currency="$" separator="." :value="sumSaldoDeudorTotal"></vue-numeric></span>
                   <v-divider></v-divider>
                   <h6>
                     Capital Vencido:
                     <!-- <span class="right">$ 370.837,86</span> -->
-                    <span class="right">$ {{capitalVencido}}</span>
+                    <!-- <span class="right">$ {{capitalVencido}}</span> -->
+                    <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="capitalVencido"></vue-numeric></span>
                   </h6>
                   <h6>
                     Capital No Vencido:
                     <!-- <span class="right">$ 2.987,24</span> -->
-                    <span class="right">$ {{capitalNoVencido}}</span>
+                    <!-- <span class="right">$ {{capitalNoVencido}}</span> -->
+                    <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="capitalNoVencido"></vue-numeric></span>
                   </h6>
                   <h6>
                     Intereses Resarcitorios:
@@ -32,7 +35,8 @@
                       <i class="fas fa-info-circle pl-10 fs-12 padding-icon"></i>
                     </el-tooltip>
                     <!-- <span class="right">$ 11.561,80</span> -->
-                    <span class="right">$ {{sumaInteresesResarcitoriosTotal}}</span>
+                    <!-- <span class="right">$ {{sumaInteresesResarcitoriosTotal}}</span> -->
+                    <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="sumaInteresesResarcitoriosTotal"></vue-numeric></span>
                   </h6>
                   <h6>
                     Intereses Punitorios:
@@ -44,7 +48,8 @@
                       <i class="fas fa-info-circle pl-10 fs-12 padding-icon"></i>
                     </el-tooltip>
                     <!-- <span class="right">$ 334,37</span> -->
-                    <span class="right">$ {{sumaInteresesPunitoriosTotal}}</span>
+                    <!-- <span class="right">$ {{sumaInteresesPunitoriosTotal}}</span> -->
+                    <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="sumaInteresesPunitoriosTotal"></vue-numeric></span>
                   </h6>
                   <v-divider></v-divider>
                 </div>
@@ -63,7 +68,9 @@
             <b-card title bg-variant="success">
               <b-card-text class="text-left">
                 <span class="fs-14b">Saldo a favor</span>
-                <span class="right featured-font">$ 11.192,04</span>
+                <!-- <span class="right featured-font">$ 11.192,04</span> -->
+                <span class="right featured-font"><vue-numeric read-only :precision="2" currency="$" separator="." :value="11192.04"></vue-numeric></span>
+                
               </b-card-text>
               <v-divider></v-divider>
 
@@ -107,30 +114,40 @@
                 <div class="text-left">
                   <span class="fs-14b">Deuda Seleccionada</span>
                   <!-- <span class="right featured-font">$ 0,00</span> -->
-                  <span class="right featured-font">$  {{sumaSaldoDeudor}}</span>
+                  <!-- <span class="right featured-font">$  {{sumaSaldoDeudor}}</span> -->
+                  <span class="right featured-font"><vue-numeric read-only :precision="2" currency="$" separator="." :value="sumaSaldoDeudor"></vue-numeric></span>
+                  
 
                   <v-divider></v-divider>
                   <h6>
                     Capital Vencido:
                     <!-- <span class="right">$ 0,00</span> -->
-                    <span class="right">$ {{capitalVencidoSelect}}</span>
+                    <!-- <span class="right">$ {{capitalVencidoSelect}}</span> -->
+                     <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="capitalVencidoSelect"></vue-numeric></span>
+                  
                   </h6>
 
                   <h6>
                     Capital No Vencido:
                     <!-- <span class="right">$ 0,00</span> -->
-                    <span class="right">$ {{capitalNoVencidoSelect}}</span>
+                    <!-- <span class="right">$ {{capitalNoVencidoSelect}}</span> -->
+                    <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="capitalNoVencidoSelect"></vue-numeric></span>
+                  
                   </h6>
 
                   <h6>
                     Intereses Resarcitorios:
                     <!-- <span class="right">$ 0,00</span> -->
-                    <span class="right">$  {{sumaInteresesResarcitorios}}</span>
+                     <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="sumaInteresesResarcitorios"></vue-numeric></span>
+                  
+                    <!-- <span class="right">$  {{sumaInteresesResarcitorios}}</span> -->
                   </h6>
 
                   <h6>
                     Intereses Punitorios:
-                    <span class="right">$ {{sumaInteresesPunitorios}}</span>
+                    <!-- <span class="right">$ {{sumaInteresesPunitorios}}</span> -->
+                    <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="sumaInteresesPunitorios"></vue-numeric></span>
+                  
                     <!-- <span class="right">$ 0,00</span> -->
                   </h6>
                   <v-divider></v-divider>
@@ -434,12 +451,14 @@ import SelectImpuesto from "@/views/components/SelectImpuesto";
 import InfoResarcitorios from "@/views/components/InfoResarcitorios";
 import { mapState, mapActions, mapMutations } from 'vuex'
 import moment from 'moment'
+import VueNumeric from 'vue-numeric'
 
 export default {
   name: "inicio",
   components: {
     SelectImpuesto,
-    InfoResarcitorios
+    InfoResarcitorios,
+    VueNumeric
   },
   data() {
     return {
@@ -843,6 +862,7 @@ export default {
   },
   mounted() {
     
+    console.log("MOUNTED NUMERALS", numeral(69563).format('000.00'))
     //recorrer tableDataIIBB tableDataAutomotores tableDataInmobiliario y devolver la suma de la columna saldo deudor
 
       console.log("tableDataIIBB", this.tableDataIIBB)
