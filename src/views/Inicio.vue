@@ -73,35 +73,40 @@
                 
               </b-card-text>
               <v-divider></v-divider>
+              <b-row>
+                <b-col sm="12" md="12" lg="6">
+                  <b-link to="operaciones/compensar" >
+                    <el-tooltip placement="top" effect="light">
+                      <div slot="content">
+                        Es cuando el contribuyente tiene saldo a favor
+                        <br>y se encuentra disponible para ser utilizado
+                        <br>en la cancelación de otras obligaciones.
+                      </div>
+                      <el-button type="primary" size="mini">Compensar Saldo</el-button>
+                    </el-tooltip>
+                  </b-link>
+                </b-col>
+                <b-col sm="12" md="12" lg="6">
+                  <div class="spacing hidden-md-and-up"></div>
+                  <b-link to="operaciones/reimputar">
+                    <el-tooltip content placement="top" effect="light">
+                      <div slot="content">
+                        Es cuando el contribuyente tiene saldo a favor, originado a partir de un pago duplicado y/o mal realizado,
+                        <br>y se encuentra disponible para cancelar otro pago del mismo tipo de obligación.
+                        <br>
+                        <br>Al momento de reimputar el pago se debe tomar la fecha original en el cual se realizó el pago
+                        <br>que generó el saldo a favor.
+                      </div>
+                      <el-button
+                        link="operaciones/confirmarPago"
+                        type="primary"
+                        size="mini"
+                      >Reimputar pagos</el-button>
+                    </el-tooltip>
+                  </b-link>
+                  </b-col>
+              </b-row>
 
-              <b-link to="operaciones/compensar" >
-                <el-tooltip placement="top" effect="light">
-                  <div slot="content">
-                    Es cuando el contribuyente tiene saldo a favor
-                    <br>y se encuentra disponible para ser utilizado
-                    <br>en la cancelación de otras obligaciones.
-                  </div>
-                  <el-button type="primary" size="mini">Compensar pago</el-button>
-                </el-tooltip>
-              </b-link>
-
-              <div class="spacing hidden-md-and-up"></div>
-              <b-link to="operaciones/reimputar">
-                <el-tooltip content placement="top" effect="light">
-                  <div slot="content">
-                    Es cuando el contribuyente tiene saldo a favor, originado a partir de un pago duplicado y/o mal realizado,
-                    <br>y se encuentra disponible para cancelar otro pago del mismo tipo de obligación.
-                    <br>
-                    <br>Al momento de reimputar el pago se debe tomar la fecha original en el cual se realizó el pago
-                    <br>que generó el saldo a favor.
-                  </div>
-                  <el-button
-                    link="operaciones/confirmarPago"
-                    type="primary"
-                    size="mini"
-                  >Reimputar pagos</el-button>
-                </el-tooltip>
-              </b-link>
             </b-card>
             <b-card title class="bg-warning">
               <h2>Faltas de presentación</h2>
@@ -290,7 +295,8 @@
                       </th>
                       <th width="230">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
-                          <h3>$ 1.456,00</h3>
+                          <!-- <h3>$ 1.456,00</h3> -->
+                          <h3>$ {{saldoDeudorAutomotores }}</h3>
                         </el-tooltip>
                       </th>
                       <th width="180">
@@ -366,7 +372,9 @@
                       </th>
                       <th width="230">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
-                          <h3>$ 357.747,16</h3>
+                          <!-- <h3>$ 357.747,16</h3> -->
+                          <!-- <h3>{{totales.ingresosBrutos.totalSaldoDeudor}}</h3> -->
+                           <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoDeudor"></vue-numeric></span>
                         </el-tooltip>
                       </th>
                       <th width="180">
@@ -380,8 +388,12 @@
                           placement="top"
                           effect="dark"
                         >
-                          <h3>$ 8.123,51</h3>
+                          <!-- <h3>$ 8.123,51</h3>  -->
+                          
+                          <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalInteresesResarcitorios"></vue-numeric></span></h3> 
+                      
                         </el-tooltip>
+                        
                       </th>
                       <th width="160">
                         <el-tooltip
@@ -389,7 +401,10 @@
                           placement="top"
                           effect="dark"
                         >
-                          <h3>$ 11.387,31</h3>
+                          <!-- <h3>$ 11.387,31</h3> -->
+                          <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalInteresesPunitorios"></vue-numeric></span></h3> 
+                      
+                   
                         </el-tooltip>
                       </th>
                       <th width="160"></th>
@@ -736,7 +751,15 @@ export default {
       Inmobiliario: 0,
       saldoDeudorAutomotores: 0,
       saldoDeudorInmobiliario: 0,
+      totales: {
+        ingresosBrutos: {
+          totalSaldoDeudor: 0,
+          totalInteresesResarcitorios: 0,
+          // saldoaFavor: 0,
+          totalInteresesPunitorios: 0
+        }
       }
+    }
     
   },
   methods: {
@@ -852,22 +875,9 @@ export default {
     }
   },
   computed: {
-    // deudaTotal: function () {
-    //   return this.sumaSaldoDeudor
-    //   // return 385.721
-    // },
-    // interesesResarcitorios: function (){
-    //   return this.interesesResarcitorios
-    // }
   },
   mounted() {
     
-    console.log("MOUNTED NUMERALS", numeral(69563).format('000.00'))
-    //recorrer tableDataIIBB tableDataAutomotores tableDataInmobiliario y devolver la suma de la columna saldo deudor
-
-      console.log("tableDataIIBB", this.tableDataIIBB)
-      // console.log("tableDataAutomotores", this.tableDataAutomotores)
-      // console.log("tableDataInmobiliario", this.tableDataInmobiliario)
 
     //DEUDA TOTAL
 
@@ -877,6 +887,8 @@ export default {
       
 
       for (var i = 0; i < this.tableDataIIBB.length; i++){
+        // console.log("salods", this.tabsaldoDeudorAutomotores tableDataIIBB[i].saldoDeudor)
+        this.totales.ingresosBrutos.totalSaldoDeudor = this.totales.ingresosBrutos.totalSaldoDeudor + this.tableDataIIBB[i].saldoDeudor
         deudaTotal = deudaTotal + this.tableDataIIBB[i].iPunitorio;
 
         //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
@@ -905,6 +917,8 @@ export default {
       var interesesResarcitoriosTotal = 0;
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataIIBB[i].iResarcitorio;
+        this.totales.ingresosBrutos.totalInteresesResarcitorios = this.totales.ingresosBrutos.totalInteresesResarcitorios + this.tableDataIIBB[i].iResarcitorio
+        // alert(this.totales.ingresosBrutos.totalInteresesResarcitorios)
       }
       for (var i = 0; i < this.tableDataAutomotores.length; i++){
         interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataAutomotores[i].iResarcitorio;
@@ -919,6 +933,9 @@ export default {
       var sumaInteresesPunitoriosTotal = 0;
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataIIBB[i].iPunitorio;
+        this.totales.ingresosBrutos.totalInteresesPunitorios = this.totales.ingresosBrutos.totalInteresesPunitorios + this.tableDataIIBB[i].iPunitorio
+        
+        
       }
       for (var i = 0; i < this.tableDataAutomotores.length; i++){
         sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataAutomotores[i].iPunitorio;
