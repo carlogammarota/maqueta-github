@@ -177,6 +177,12 @@
                   <el-button size="mini">Seleccionar todo</el-button>
                   <el-button size="mini">Invertir selección</el-button>
                 </b-navbar-nav>
+                  <el-input
+                            style="width: 300px; margin-left: 5px;"
+                            placeholder="Filtrar por impuesto, periodo o importe"
+                            prefix-icon="el-icon-search"
+                            v-model="filters[0].value"
+                  ></el-input>
 
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
@@ -209,22 +215,29 @@
                         <h3>Inmobiliario</h3>
                       </th>
                       <th width="200">
-                        <el-input
+                        <!-- <el-input
                           style="width: 200px; margin-left: 5px; font-size: 10px;"
                           placeholder="Filtrar"
                           prefix-icon="el-icon-search"
-                          v-model="filters[0].value"
-                        ></el-input>
+                          v-model="filters[1].value"
+                        ></el-input> -->
                       </th>
                       <th width="230">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
                           <!-- <h3>$ 10.178,70</h3> -->
-                          <h3>$ 10.178,70</h3>
+                          <!-- <h3>{{totales.inmobiliario.totalSaldoDeudor}}</h3> -->
+                          <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalSaldoDeudor"></vue-numeric></span></h3> 
+                       
+                          <!-- <h3>$ HARDCODEADO</h3> -->
+                          <!-- {{totales.inmobiliario.totalSaldoDeudor}} -->
                         </el-tooltip>
                       </th>
                       <th width="180">
                         <el-tooltip content="Total Saldo a Favor" placement="top" effect="dark">
-                          <h3>$ 1.612,53</h3>
+                          <!-- <h3>$ HARDCODEADO</h3> -->
+                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalSaldoaFavor"></vue-numeric></span></h3> 
+                       
+                          
                         </el-tooltip>
                       </th>
                       <th width="250">
@@ -233,7 +246,9 @@
                           placement="top"
                           effect="dark"
                         >
-                          <h3>$ 152,82</h3>
+                          <!-- <h3>$ 152,82</h3> -->
+                          <!-- <h3>$ {{totales.inmobiliario.totalSaldoDeudor}}</h3> -->
+                          <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalInteresesResarcitorios"></vue-numeric></span></h3> 
                         </el-tooltip>
                       </th>
                       <th width="160">
@@ -242,7 +257,10 @@
                           placement="top"
                           effect="dark"
                         >
-                          <h3>$ 334,47</h3>
+                          <!-- <h3>$ 334,47</h3> -->
+                          <!-- <h3>{{totales.inmobiliario.totalInteresesPunitorios}}</h3> -->
+                          <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalInteresesPunitorios"></vue-numeric></span></h3> 
+                        
                         </el-tooltip>
                       </th>
                       <th width="95"></th>
@@ -286,22 +304,26 @@
                         <h3>Automotores</h3>
                       </th>
                       <th width="200">
-                        <el-input
+                        <!-- <el-input
                           style="width: 200px; margin-left: 5px; font-size: 10px;"
                           placeholder="Filtrar"
                           prefix-icon="el-icon-search"
                           v-model="filters[1].value"
-                        ></el-input>
+                        ></el-input> -->
                       </th>
                       <th width="230">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
                           <!-- <h3>$ 1.456,00</h3> -->
-                          <h3>$ {{saldoDeudorAutomotores }}</h3>
+                          <!-- <h3>$ {{totales.automotores.totalSaldoDeudor }}</h3> -->
+                           <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalSaldoDeudor"></vue-numeric></span>
                         </el-tooltip>
                       </th>
                       <th width="180">
                         <el-tooltip content="Total Saldo a Favor" placement="top" effect="dark">
-                          <h3>$ 21,67</h3>
+                          <!-- <h3>$ 21,67</h3> -->
+                          <!-- <h3>{{totales.automotores.totalSaldoaFavor}}</h3> -->
+                          <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalSaldoaFavor"></vue-numeric></span>
+                        
                         </el-tooltip>
                       </th>
                       <th width="250">
@@ -310,7 +332,9 @@
                           placement="top"
                           effect="dark"
                         >
-                          <h3>$ 0,00</h3>
+                          <!-- <h3>$ 0,00</h3> -->
+                          <!-- <h3>{{totales.automotores.totalInteresesResarcitorios}}</h3> -->
+                           <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalInteresesResarcitorios"></vue-numeric></span>
                         </el-tooltip>
                       </th>
                       <th width="160">
@@ -319,7 +343,9 @@
                           placement="top"
                           effect="dark"
                         >
-                          <h3>$ 0,00</h3>
+                          <!-- <h3>$ 0,00</h3> -->
+                          <!-- <h3>{{totales.automotores.totalInteresesPunitorios}}</h3> -->
+                          <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalInteresesPunitorios"></vue-numeric></span>
                         </el-tooltip>
                       </th>
                       <th width="95"></th>
@@ -363,15 +389,16 @@
                         <h3>Ingresos Brutos</h3>
                       </th>
                       <th width="200">
-                        <el-input
+                        <!-- <el-input
                           style="width: 200px; margin-left: 5px; font-size: 10px;"
                           placeholder="Filtrar"
                           prefix-icon="el-icon-search"
-                          v-model="filters[2].value"
-                        ></el-input>
+                          v-model="filters[1].value"
+                        ></el-input> -->
                       </th>
                       <th width="230">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
+                          
                           <!-- <h3>$ 357.747,16</h3> -->
                           <!-- <h3>{{totales.ingresosBrutos.totalSaldoDeudor}}</h3> -->
                            <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoDeudor"></vue-numeric></span>
@@ -379,7 +406,9 @@
                       </th>
                       <th width="180">
                         <el-tooltip content="Total Saldo a Favor" placement="top" effect="dark">
-                          <h3>$ 8.123,51</h3>
+                          <!-- <h3>$ 8.123,51</h3> -->
+                          <!-- <h3>{{totales.ingresosBrutos.totalSaldoaFavor}}</h3> -->
+                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoaFavor"></vue-numeric></span></h3> 
                         </el-tooltip>
                       </th>
                       <th width="250">
@@ -528,7 +557,7 @@ export default {
         {
           periodo: "01/2010",
           vencimiento: "05/02/2020",
-          saldoDeudor: 90.000,
+          saldoDeudor: 90000,
           saldoFavor: 0,
           iResarcitorio: 6225,
           iPunitorio: 12356,
@@ -539,7 +568,7 @@ export default {
          {
           periodo: "01/2010",
           vencimiento: "10/10/2020",
-          saldoDeudor: 99.999,
+          saldoDeudor: 99999,
           saldoFavor: 0,
           iResarcitorio: 6225,
           iPunitorio: 12356,
@@ -548,7 +577,7 @@ export default {
         {
           periodo: "01/2010",
           vencimiento: "05/02/2010",
-          saldoDeudor: 1.521,
+          saldoDeudor: 1521,
           saldoFavor: 0,
           iResarcitorio: 6225,
           iPunitorio: 1235,
@@ -557,7 +586,7 @@ export default {
         {
           periodo: "02/2010",
           vencimiento: "06/03/2010",
-          saldoDeudor: 1.521,
+          saldoDeudor: 1521,
           saldoFavor: 0,
           iResarcitorio: 5832,
           iPunitorio: 11056,
@@ -566,7 +595,7 @@ export default {
         {
           periodo: "03/2011",
           vencimiento: "05/04/2010",
-          saldoDeudor: 1.612,
+          saldoDeudor: 1612,
           saldoFavor: 0,
           iResarcitorio: 3225,
           iPunitorio: 10025,
@@ -575,7 +604,7 @@ export default {
         {
           periodo: "04/2011",
           vencimiento: "06/05/2011",
-          saldoDeudor: 1.612,
+          saldoDeudor: 1612,
           saldoFavor: 0,
           iResarcitorio: 55956,
           iPunitorio: 660,
@@ -584,18 +613,18 @@ export default {
         {
           periodo: "03/2015",
           vencimiento: "06/04/2015",
-          saldoDeudor: 2.536,
+          saldoDeudor: 2536,
           saldoFavor: 0,
-          iResarcitorio: 15.82,
+          iResarcitorio: 1582,
           iPunitorio: 299,
           estado: "-"
         },
         {
           periodo: "01/2016",
           vencimiento: "05/02/2016",
-          saldoDeudor: 2.987,
+          saldoDeudor: 2987,
           saldoFavor: 0,
-          iResarcitorio: 12.32,
+          iResarcitorio: 1232,
           iPunitorio: 3544,
           estado: "-"
         },
@@ -613,7 +642,7 @@ export default {
         {
           periodo: "01/2010",
           vencimiento: "14/09/2019",
-          saldoDeudor: 14.5600,
+          saldoDeudor: 145600,
           saldoFavor: 0,
           iResarcitorio: 1132,
           iPunitorio: 475,
@@ -642,7 +671,7 @@ export default {
         {
           periodo: "01/2017",
           vencimiento: "10/02/2017",
-          saldoDeudor: 75.548,
+          saldoDeudor: 75548,
           saldoFavor: 0,
           iResarcitorio: 2530,
           iPunitorio: 12356,
@@ -651,7 +680,7 @@ export default {
         {
           periodo: "02/2017",
           vencimiento: "10/03/2017",
-          saldoDeudor: 68.256,
+          saldoDeudor: 68256,
           saldoFavor: 0,
           iResarcitorio: 2035,
           iPunitorio: 11056,
@@ -660,7 +689,7 @@ export default {
         {
           periodo: "03/2017",
           vencimiento: "12/11/2017",
-          saldoDeudor: 52.369,
+          saldoDeudor: 52369,
           saldoFavor: 0,
           iResarcitorio: 2306,
           iPunitorio: 981,
@@ -669,7 +698,7 @@ export default {
         {
           periodo: "04/2017",
           vencimiento: "12/11/2017",
-          saldoDeudor: 5.000,
+          saldoDeudor: 5000,
           saldoFavor: 12351,
           iResarcitorio: 59666,
           iPunitorio: 634,
@@ -678,7 +707,7 @@ export default {
         {
           periodo: "05/2017",
           vencimiento: "15/11/2017",
-          saldoDeudor: 65.945,
+          saldoDeudor: 65945,
           saldoFavor: 0,
           iResarcitorio: 46584,
           iPunitorio: 400,
@@ -687,7 +716,7 @@ export default {
         {
           periodo: "03/2018",
           vencimiento: "08/11/2018",
-          saldoDeudor: 75.325,
+          saldoDeudor: 75325,
           saldoFavor: 0,
           iResarcitorio: 1605,
           iPunitorio: 800,
@@ -696,7 +725,7 @@ export default {
         {
           periodo: "01/2019",
           vencimiento: "11/02/2019",
-          saldoDeudor: 89.248,
+          saldoDeudor: 89248,
           saldoFavor: 0,
           iResarcitorio: 2910,
           iPunitorio: 1300,
@@ -705,7 +734,7 @@ export default {
         {
           periodo: "02/2019",
           vencimiento: "13/11/2019",
-          saldoDeudor: 13.456,
+          saldoDeudor: 13456,
           saldoFavor: 0,
           iResarcitorio: 4520,
           iPunitorio: 1200,
@@ -754,8 +783,21 @@ export default {
       totales: {
         ingresosBrutos: {
           totalSaldoDeudor: 0,
+          totalSaldoaFavor: 0,
           totalInteresesResarcitorios: 0,
           // saldoaFavor: 0,
+          totalInteresesPunitorios: 0
+        },
+        inmobiliario: { 
+          totalSaldoaFavor: 0,
+          totalSaldoDeudor: 0,
+          totalInteresesResarcitorios: 0,
+          totalInteresesPunitorios: 0
+        },
+        automotores: {
+          totalSaldoaFavor: 0,
+          totalSaldoDeudor: 0,
+          totalInteresesResarcitorios: 0,
           totalInteresesPunitorios: 0
         }
       }
@@ -889,7 +931,9 @@ export default {
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         // console.log("salods", this.tabsaldoDeudorAutomotores tableDataIIBB[i].saldoDeudor)
         this.totales.ingresosBrutos.totalSaldoDeudor = this.totales.ingresosBrutos.totalSaldoDeudor + this.tableDataIIBB[i].saldoDeudor
+        this.totales.ingresosBrutos.totalSaldoaFavor = this.totales.ingresosBrutos.totalSaldoaFavor + this.tableDataIIBB[i].saldoFavor
         deudaTotal = deudaTotal + this.tableDataIIBB[i].iPunitorio;
+        
 
         //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
         this.Inmobiliario = this.saldoDeudorIIBB + this.tableDataIIBB[i].saldoDeudor
@@ -904,6 +948,7 @@ export default {
       }
       for (var i = 0; i < this.tableDataInmobiliario.length; i++){
         deudaTotal = deudaTotal + this.tableDataInmobiliario[i].iPunitorio;
+        
 
         //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
         this.saldoDeudorInmobiliario = this.saldoDeudorInmobiliario + this.tableDataIIBB[i].saldoDeudor
@@ -918,13 +963,24 @@ export default {
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataIIBB[i].iResarcitorio;
         this.totales.ingresosBrutos.totalInteresesResarcitorios = this.totales.ingresosBrutos.totalInteresesResarcitorios + this.tableDataIIBB[i].iResarcitorio
+        
         // alert(this.totales.ingresosBrutos.totalInteresesResarcitorios)
+        
       }
       for (var i = 0; i < this.tableDataAutomotores.length; i++){
         interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataAutomotores[i].iResarcitorio;
+        this.totales.automotores.totalInteresesResarcitorios = this.totales.automotores.totalInteresesResarcitorios + this.tableDataAutomotores[i].iResarcitorio;
+        this.totales.automotores.totalSaldoaFavor = this.totales.automotores.totalSaldoaFavor + this.tableDataAutomotores[i].saldoFavor
+        this.totales.automotores.totalSaldoDeudor = this.totales.automotores.totalSaldoDeudor + this.tableDataAutomotores[i].saldoDeudor
+        // totales.automotores.totalSaldoaFavor
       }
       for (var i = 0; i < this.tableDataInmobiliario.length; i++){
         interesesResarcitoriosTotal = interesesResarcitoriosTotal + this.tableDataInmobiliario[i].iResarcitorio;
+        // this.totales.inmobiliario.totalSaldoDeudor = 600000000
+        
+        this.totales.inmobiliario.totalSaldoDeudor = this.totales.inmobiliario.totalSaldoDeudor + this.tableDataInmobiliario[i].saldoDeudor
+        this.totales.inmobiliario.totalSaldoaFavor = this.totales.inmobiliario.totalSaldoaFavor + this.tableDataInmobiliario[i].saldoFavor
+        this.totales.inmobiliario.totalInteresesResarcitorios = this.totales.inmobiliario.totalInteresesResarcitorios + this.tableDataInmobiliario[i].iResarcitorio
       }
       this.sumaInteresesResarcitoriosTotal = interesesResarcitoriosTotal;
 
@@ -936,12 +992,16 @@ export default {
         this.totales.ingresosBrutos.totalInteresesPunitorios = this.totales.ingresosBrutos.totalInteresesPunitorios + this.tableDataIIBB[i].iPunitorio
         
         
+        
       }
       for (var i = 0; i < this.tableDataAutomotores.length; i++){
+        this.totales.automotores.totalInteresesPunitorios = this.totales.automotores.totalInteresesPunitorios + this.tableDataAutomotores[i].iPunitorio
         sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataAutomotores[i].iPunitorio;
       }
       for (var i = 0; i < this.tableDataInmobiliario.length; i++){
         sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal + this.tableDataInmobiliario[i].iPunitorio;
+        this.totales.inmobiliario.totalInteresesPunitorios = this.totales.inmobiliario.totalInteresesPunitorios +  this.tableDataInmobiliario[i].iPunitorio
+        
       }
       this.sumaInteresesPunitoriosTotal = sumaInteresesPunitoriosTotal.toFixed(2);
 
