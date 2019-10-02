@@ -69,7 +69,8 @@
               <b-card-text class="text-left">
                 <span class="fs-14b">Saldo a favor</span>
                 <!-- <span class="right featured-font">$ 11.192,04</span> -->
-                <span class="right featured-font"><vue-numeric read-only :precision="2" currency="$" separator="." :value="11192.04"></vue-numeric></span>
+                <!-- <span class="right featured-font">$ {{totalSaldoAFavorGeneral}}</span> -->
+                <span class="right featured-font"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totalSaldoAFavorGeneral"></vue-numeric></span>
                 
               </b-card-text>
               <v-divider></v-divider>
@@ -202,73 +203,57 @@
             </b-navbar>
 
             <el-collapse accordion class="hidden-sm-and-down">
-              <el-collapse-item name="1">
-                <template slot="title">
+              <!-- <el-collapse-item name="1"> -->
+                <!-- <template slot="title">
                   <table>
                     <tr>
-                      <th width="65">
+                      <th width="150">
                         <span style="width: 62px">
                           <i class="fas fa-home"></i>
                         </span>
                       </th>
-                      <th width="210">
+                      <th width="150">
                         <h3>Inmobiliario</h3>
                       </th>
-                      <th width="200">
-                        <!-- <el-input
-                          style="width: 200px; margin-left: 5px; font-size: 10px;"
-                          placeholder="Filtrar"
-                          prefix-icon="el-icon-search"
-                          v-model="filters[1].value"
-                        ></el-input> -->
+                      <th width="150">
                       </th>
-                      <th width="230">
+                      <th width="150">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
-                          <!-- <h3>$ 10.178,70</h3> -->
-                          <!-- <h3>{{totales.inmobiliario.totalSaldoDeudor}}</h3> -->
                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalSaldoDeudor"></vue-numeric></span></h3> 
                        
-                          <!-- <h3>$ HARDCODEADO</h3> -->
-                          <!-- {{totales.inmobiliario.totalSaldoDeudor}} -->
                         </el-tooltip>
                       </th>
-                      <th width="180">
+                      <th width="150">
                         <el-tooltip content="Total Saldo a Favor" placement="top" effect="dark">
-                          <!-- <h3>$ HARDCODEADO</h3> -->
                            <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalSaldoaFavor"></vue-numeric></span></h3> 
                        
                           
                         </el-tooltip>
                       </th>
-                      <th width="250">
+                      <th width="150">
                         <el-tooltip
                           content="Total Intereses resarcitorios"
                           placement="top"
                           effect="dark"
                         >
-                          <!-- <h3>$ 152,82</h3> -->
-                          <!-- <h3>$ {{totales.inmobiliario.totalSaldoDeudor}}</h3> -->
                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalInteresesResarcitorios"></vue-numeric></span></h3> 
                         </el-tooltip>
                       </th>
-                      <th width="160">
+                      <th width="150">
                         <el-tooltip
                           content="Total Intereses punitorios"
                           placement="top"
                           effect="dark"
                         >
-                          <!-- <h3>$ 334,47</h3> -->
-                          <!-- <h3>{{totales.inmobiliario.totalInteresesPunitorios}}</h3> -->
                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalInteresesPunitorios"></vue-numeric></span></h3> 
                         
                         </el-tooltip>
                       </th>
-                      <th width="95"></th>
+                      <th width="150"></th>
                     </tr>
                   </table>
-                </template>
-                <data-tables
-                  @selection-change="handleSelectionChange"
+                </template> -->
+                <!-- <data-tables
                   :data="tableDataInmobiliario"
                   :filters="filters"
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
@@ -290,82 +275,69 @@
                     </template>
                   </el-table-column>
                 </data-tables>
-              </el-collapse-item>
-              <el-collapse-item name="2">
+              </el-collapse-item> -->
+              
+
+              <el-collapse-item name="1">
                 <template slot="title">
-                  <table>
-                    <tr>
-                      <th width="65">
-                        <span class style="width: 62px">
-                          <i class="fas fa-car-alt"></i>
-                        </span>
-                      </th>
-                      <th width="210">
-                        <h3>Automotores</h3>
-                      </th>
-                      <th width="200">
-                        <!-- <el-input
-                          style="width: 200px; margin-left: 5px; font-size: 10px;"
-                          placeholder="Filtrar"
-                          prefix-icon="el-icon-search"
-                          v-model="filters[1].value"
-                        ></el-input> -->
-                      </th>
-                      <th width="230">
-                        <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
-                          <!-- <h3>$ 1.456,00</h3> -->
-                          <!-- <h3>$ {{totales.automotores.totalSaldoDeudor }}</h3> -->
-                           <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalSaldoDeudor"></vue-numeric></span>
+                  <b-container id="tablaEspecial">
+                     <div class="tablaCabecera" style="width:76px;">
+                      <i class="fas fa-home"></i>
+                     </div>
+                     <div class="tablaCabecera" style="width: 210px;">Inmobiliario</div>
+                     <div class="tablaCabecera">
+                        <el-tooltip content="Total Saldo Deudor"
+                                    effect="dark"
+                                    placement="top">
+                            <base-button>
+                              <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalSaldoDeudor"></vue-numeric>
+                            </base-button>
                         </el-tooltip>
-                      </th>
-                      <th width="180">
-                        <el-tooltip content="Total Saldo a Favor" placement="top" effect="dark">
-                          <!-- <h3>$ 21,67</h3> -->
-                          <!-- <h3>{{totales.automotores.totalSaldoaFavor}}</h3> -->
-                          <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalSaldoaFavor"></vue-numeric></span>
-                        
-                        </el-tooltip>
-                      </th>
-                      <th width="250">
-                        <el-tooltip
-                          content="Total Intereses resarcitorios"
-                          placement="top"
-                          effect="dark"
-                        >
-                          <!-- <h3>$ 0,00</h3> -->
-                          <!-- <h3>{{totales.automotores.totalInteresesResarcitorios}}</h3> -->
-                           <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalInteresesResarcitorios"></vue-numeric></span>
-                        </el-tooltip>
-                      </th>
-                      <th width="160">
-                        <el-tooltip
-                          content="Total Intereses punitorios"
-                          placement="top"
-                          effect="dark"
-                        >
-                          <!-- <h3>$ 0,00</h3> -->
-                          <!-- <h3>{{totales.automotores.totalInteresesPunitorios}}</h3> -->
-                          <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalInteresesPunitorios"></vue-numeric></span>
-                        </el-tooltip>
-                      </th>
-                      <th width="95"></th>
-                    </tr>
-                  </table>
+                     </div>
+                     <div class="tablaCabecera">
+                      <el-tooltip content="Total Saldo a Favor"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalSaldoaFavor"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                      <el-tooltip content="Total Intereses Resarcitorios"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalInteresesResarcitorios"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                       <el-tooltip content="Total Intereses Punitorios"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.inmobiliario.totalInteresesPunitorios"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                  </b-container>
+                  
                 </template>
                 <data-tables
+                
                   @selection-change="handleSelectionChange"
-                  :data="tableDataAutomotores"
+                  :data="tableDataInmobiliario"
                   :filters="filters"
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
                 >
                   <el-table-column type="selection" width="76px"></el-table-column>
-                  <el-table-column
-                    sortable
-                    v-for="column in columns"
-                    :prop="column.prop"
-                    :label="column.label"
-                    :key="column.prop"
-                  ></el-table-column>
+                  <el-table-column sortable prop="periodo" label="Periodo" fixed ></el-table-column>
+                  <el-table-column sortable width="130" prop="vencimiento" fixed label="Vencimiento" ></el-table-column>
+                  <el-table-column sortable width="130" prop="saldoDeudor" label="Saldo Deudor" ></el-table-column>
+                  <el-table-column sortable width="130" prop="saldoFavor" label="Saldo a Favor" ></el-table-column>
+                  <el-table-column sortable width="130" prop="iResarcitorio" label="Intereses Resarcitorios" ></el-table-column>
+                  <el-table-column sortable width="130" prop="iPunitorio" label="Intereses Punitorios" ></el-table-column>
                   <el-table-column label="Presentación" min-width="100px"></el-table-column>
                   <el-table-column label="Ver" min-width="50px">
                     <template>
@@ -376,70 +348,229 @@
                   </el-table-column>
                 </data-tables>
               </el-collapse-item>
+
+
+              <el-collapse-item name="2">
+                <template slot="title">
+                  <b-container id="tablaEspecial">
+                     <div class="tablaCabecera" style="width:76px;">
+                       <i class="fas fa-car-alt"></i>
+                     </div>
+                     <div class="tablaCabecera" style="width: 210px;">Automotor</div>
+                     <div class="tablaCabecera">
+                        <el-tooltip content="Total Saldo Deudor"
+                                    effect="dark"
+                                    placement="top">
+                            <base-button>
+                              <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalSaldoDeudor"></vue-numeric>
+                            </base-button>
+                        </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                      <el-tooltip content="Total Saldo a Favor"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalSaldoaFavor"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                      <el-tooltip content="Total Intereses Resarcitorios"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalInteresesResarcitorios"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                       <el-tooltip content="Total Intereses Punitorios"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.automotores.totalInteresesPunitorios"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                  </b-container>
+                  
+                </template>
+                <data-tables
+                
+                  @selection-change="handleSelectionChange"
+                  :data="tableDataAutomotores"
+                  :filters="filters"
+                  :pagination-props="{ pageSizes: [3, 5, 10] }"
+                >
+                  <el-table-column type="selection" width="76px"></el-table-column>
+                  <el-table-column sortable prop="periodo" label="Periodo" fixed ></el-table-column>
+                  <el-table-column sortable width="130" prop="vencimiento" fixed label="Vencimiento" ></el-table-column>
+                  <el-table-column sortable width="130" prop="saldoDeudor" label="Saldo Deudor" ></el-table-column>
+                  <el-table-column sortable width="130" prop="saldoFavor" label="Saldo a Favor" ></el-table-column>
+                  <el-table-column sortable width="130" prop="iResarcitorio" label="Intereses Resarcitorios" ></el-table-column>
+                  <el-table-column sortable width="130" prop="iPunitorio" label="Intereses Punitorios" ></el-table-column>
+                  <el-table-column label="Presentación" min-width="100px"></el-table-column>
+                  <el-table-column label="Ver" min-width="50px">
+                    <template>
+                      <b-link class="obligacion-icon" to="cuentaCorriente/consultarPorPeriodo">
+                        <i class="far fa-file-alt size-3x"></i>
+                      </b-link>
+                    </template>
+                  </el-table-column>
+                </data-tables>
+              </el-collapse-item>
+              
               <el-collapse-item name="3">
+                <template slot="title">
+                  <b-container id="tablaEspecial">
+                     <div class="tablaCabecera" style="width:76px;">
+                       <!-- <i class="fas fa-car-alt"></i> -->
+                       <i class="fas fa-sign-in-alt padding-icon"></i>
+                     </div>
+                     <div class="tablaCabecera" style="width: 210px;">Ingresos Brutos</div>
+                     <div class="tablaCabecera">
+                        <el-tooltip content="Total Saldo Deudor"
+                                    effect="dark"
+                                    placement="top">
+                            <base-button>
+                              <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoDeudor"></vue-numeric>
+                            </base-button>
+                        </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                      <el-tooltip content="Total Saldo a Favor"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoaFavor"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                      <el-tooltip content="Total Intereses Resarcitorios"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalInteresesResarcitorios"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                     <div class="tablaCabecera">
+                       <el-tooltip content="Total Intereses Punitorios"
+                                  effect="dark"
+                                  placement="top">
+                          <base-button>
+                            <vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalInteresesPunitorios"></vue-numeric>
+                          </base-button>
+                      </el-tooltip>
+                     </div>
+                  </b-container>
+                  
+                </template>
+                <data-tables
+                
+                  @selection-change="handleSelectionChange"
+                  :data="tableDataIIBB"
+                  :filters="filters"
+                  :pagination-props="{ pageSizes: [3, 5, 10] }"
+                >
+                  <el-table-column type="selection" width="76px"></el-table-column>
+                  <el-table-column sortable prop="periodo" label="Periodo" fixed ></el-table-column>
+                  <el-table-column sortable width="130" prop="vencimiento" fixed label="Vencimiento" ></el-table-column>
+                  <el-table-column sortable width="130" prop="saldoDeudor" label="Saldo Deudor" ></el-table-column>
+                  <el-table-column sortable width="130" prop="saldoFavor" label="Saldo a Favor" ></el-table-column>
+                  <el-table-column sortable width="130" prop="iResarcitorio" label="Intereses Resarcitorios" ></el-table-column>
+                  <el-table-column sortable width="130" prop="iPunitorio" label="Intereses Punitorios" ></el-table-column>
+                  <el-table-column label="Presentación" min-width="100px"></el-table-column>
+                  <el-table-column label="Ver" min-width="50px">
+                    <template>
+                      <b-link class="obligacion-icon" to="cuentaCorriente/consultarPorPeriodo">
+                        <i class="far fa-file-alt size-3x"></i>
+                      </b-link>
+                    </template>
+                  </el-table-column>
+                </data-tables>
+              </el-collapse-item>
+
+<!--               
+              <el-collapse-item name="3">
+
                 <template slot="title">
                   <table>
                     <tr>
-                      <th width="65">
+                      <th width="130">
                         <span class style="width: 62px">
                           <i class="fas fa-dollar-sign"></i>
                         </span>
                       </th>
-                      <th width="210">
+                      <th width="130">
                         <h3>Ingresos Brutos</h3>
                       </th>
-                      <th width="200">
-                        <!-- <el-input
-                          style="width: 200px; margin-left: 5px; font-size: 10px;"
-                          placeholder="Filtrar"
-                          prefix-icon="el-icon-search"
-                          v-model="filters[1].value"
-                        ></el-input> -->
+                      <th width="130">
+                
                       </th>
-                      <th width="230">
+                      <th width="130">
                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
                           
-                          <!-- <h3>$ 357.747,16</h3> -->
-                          <!-- <h3>{{totales.ingresosBrutos.totalSaldoDeudor}}</h3> -->
+                    
                            <span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoDeudor"></vue-numeric></span>
                         </el-tooltip>
                       </th>
-                      <th width="180">
+                      <th width="130">
                         <el-tooltip content="Total Saldo a Favor" placement="top" effect="dark">
-                          <!-- <h3>$ 8.123,51</h3> -->
-                          <!-- <h3>{{totales.ingresosBrutos.totalSaldoaFavor}}</h3> -->
+                      
                            <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalSaldoaFavor"></vue-numeric></span></h3> 
                         </el-tooltip>
                       </th>
-                      <th width="250">
+                      <th width="130">
                         <el-tooltip
                           content="Total Intereses resarcitorios"
                           placement="top"
                           effect="dark"
                         >
-                          <!-- <h3>$ 8.123,51</h3>  -->
+                          
                           
                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalInteresesResarcitorios"></vue-numeric></span></h3> 
                       
                         </el-tooltip>
                         
                       </th>
-                      <th width="160">
+                      <th width="130">
                         <el-tooltip
                           content="Total Intereses punitorios"
                           placement="top"
                           effect="dark"
                         >
-                          <!-- <h3>$ 11.387,31</h3> -->
+                         
                           <h3><span class="right"><vue-numeric read-only :precision="2" currency="$" separator="." :value="totales.ingresosBrutos.totalInteresesPunitorios"></vue-numeric></span></h3> 
                       
                    
                         </el-tooltip>
                       </th>
-                      <th width="160"></th>
+                      <th width="130"></th>
                     </tr>
                   </table>
+                <el-table class="tableEdit">
+                         <el-tooltip content="Total Saldo Deudor" placement="top" effect="dark">
+                           <span class="right">10000</span>
+                        </el-tooltip>
+                    <el-table-column type="selection"></el-table-column>
+                    <el-table-column
+                    width="150"
+                      v-for="column in columnsHeader"
+                      :prop="column.prop"
+                      :label="column.label"
+                      :key="column.prop"
+                    >
+                    </el-table-column>
+                    <el-table-column Label="Ver"></el-table-column>
+                  
+
+                </el-table>
                 </template>
+
+                
 
                 <data-tables
                   @selection-change="handleSelectionChange"
@@ -448,6 +579,7 @@
                   :pagination-props="{ pageSizes: [3, 5, 10] }"
                 >
                   <el-table-column type="selection" width="76px"></el-table-column>
+                  
                   <el-table-column
                     sortable
                     v-for="column in columns"
@@ -479,7 +611,7 @@
                     </template>
                   </el-table-column>
                 </data-tables>
-              </el-collapse-item>
+              </el-collapse-item> -->
             </el-collapse>
           </b-col>
         </b-row>
@@ -508,15 +640,15 @@ export default {
     return {
       filters: [
         {
-          prop: ["periodo", "vencimiento"],
+          prop: ["periodo", "vencimiento", "impuesto"],
           value: ""
         },
         {
-          prop: ["periodo", "vencimiento"],
+          prop: ["periodo", "vencimiento", "impuesto"],
           value: ""
         },
         {
-          prop: ["periodo", "vencimiento", "estado"],
+          prop: ["periodo", "vencimiento", "estado", "impuesto"],
           value: ""
         }
       ],
@@ -528,6 +660,33 @@ export default {
         onCurrentChange: this.onPageCurrentChange
       },
       columns: [
+        {
+          prop: "periodo",
+          label: "Periodo",
+          // fixed: true,
+        },
+        {
+          prop: "vencimiento",
+          label: "Vencimiento"
+        },
+        {
+          prop: "saldoDeudor",
+          label: "Saldo deudor"
+        },
+        {
+          prop: "saldoFavor",
+          label: "Saldo a Favor"
+        },
+        {
+          prop: "iResarcitorio",
+          label: "Intereses resarcitorios"
+        },
+        {
+          prop: "iPunitorio",
+          label: "Intereses punitorios"
+        }
+      ],
+      columnsHeader: [
         {
           prop: "periodo",
           label: "Periodo"
@@ -800,7 +959,8 @@ export default {
           totalInteresesResarcitorios: 0,
           totalInteresesPunitorios: 0
         }
-      }
+      },
+      totalSaldoAFavorGeneral: 0
     }
     
   },
@@ -926,12 +1086,14 @@ export default {
       
 
       var deudaTotal = 0;
-      
+      // var totalSaldoAFavor = 0;
 
       for (var i = 0; i < this.tableDataIIBB.length; i++){
         // console.log("salods", this.tabsaldoDeudorAutomotores tableDataIIBB[i].saldoDeudor)
         this.totales.ingresosBrutos.totalSaldoDeudor = this.totales.ingresosBrutos.totalSaldoDeudor + this.tableDataIIBB[i].saldoDeudor
         this.totales.ingresosBrutos.totalSaldoaFavor = this.totales.ingresosBrutos.totalSaldoaFavor + this.tableDataIIBB[i].saldoFavor
+        this.totalSaldoAFavorGeneral = this.totalSaldoAFavorGeneral + this.tableDataIIBB[i].saldoFavor
+
         deudaTotal = deudaTotal + this.tableDataIIBB[i].iPunitorio;
         
 
@@ -941,7 +1103,7 @@ export default {
       }
       for (var i = 0; i < this.tableDataAutomotores.length; i++){
         deudaTotal = deudaTotal + this.tableDataAutomotores[i].iPunitorio;
-
+        this.totalSaldoAFavorGeneral = this.totalSaldoAFavorGeneral + this.tableDataAutomotores[i].saldoFavor
         //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
         this.saldoDeudorAutomotores = this.saldoDeudorAutomotores + this.tableDataIIBB[i].saldoDeudor
         console.log("saldoDeudorAutomotores",this.saldoDeudorAutomotores)
@@ -949,7 +1111,7 @@ export default {
       for (var i = 0; i < this.tableDataInmobiliario.length; i++){
         deudaTotal = deudaTotal + this.tableDataInmobiliario[i].iPunitorio;
         
-
+        this.totalSaldoAFavorGeneral = this.totalSaldoAFavorGeneral + this.tableDataInmobiliario[i].saldoFavor
         //aca hay que revisar esto, para poder mostrar el total de saldoDeudor en cada tabla
         this.saldoDeudorInmobiliario = this.saldoDeudorInmobiliario + this.tableDataIIBB[i].saldoDeudor
         console.log("saldoDeudorInmobiliario",this.saldoDeudorInmobiliario)
@@ -1062,3 +1224,24 @@ export default {
   }
 };
 </script>
+
+<style>
+.tablaCabecera{
+  float: left;
+  width: 130px;
+}
+.tableEdit{
+    height: 40px;
+    background-color: white;
+}
+@media (min-width: 900px) and (max-width: 1280px){
+ #tablaEspecial{
+    padding: 0px 0px 0px 0px !important;
+    margin: auto !important;
+  }
+}
+
+#tablaEspecial{
+  margin: inherit 
+}
+</style>

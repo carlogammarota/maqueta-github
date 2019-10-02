@@ -31,7 +31,7 @@
                       <h6>Deuda: $ 1.521.36</h6>
                     </span>
                   </el-step>
-                  <el-step title="Importe" description="Ingrese el importe a compensar"></el-step>
+                  <el-step title="Importe" description="Ingrese el importe a Reimputar"></el-step>
                 </el-steps>
                 <el-button v-show="isActive" class="mt-20" type="primary" size="mini" @click="next">Paso Siguiente</el-button>
                 <v-divider></v-divider>
@@ -164,10 +164,10 @@
                           type="primary"
                           size="mini"
                           style="margin-left: 20px"
-                        >Compensar ahora</el-button>  
+                        >Reimputar ahora</el-button>  
                       </b-link>
                       <v-divider></v-divider>
-                      <h2>Impuesto a compensar: Inmobiliario | Periodo: 2010/01 | Importe a compensar: $ {{ monto }}</h2>
+                      <h2>Impuesto a Reimputar: Inmobiliario | Periodo: 2010/01 | Importe a Reimputar: $ {{ monto }}</h2>
                       <v-divider></v-divider>
                     </b-col>
                   </el-tab-pane>
@@ -247,11 +247,6 @@ export default {
         {
           prop: "periodo",
           label: "Periodo",
-          sortable: true
-        },
-        {
-          prop: "saldoFavor",
-          label: "Saldo a Favor",
           sortable: true
         },
         {

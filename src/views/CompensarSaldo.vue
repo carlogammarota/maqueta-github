@@ -7,32 +7,39 @@
           <b-col sm="12" md="12">
             <b-card class="text-left">
               <b-col md="12">
+                {{deudaSelected}}
                 <el-steps :active="active" finish-status="success">
                   <el-step
                     title="Origen"
                     description="Seleccione una fila de las obligaciones con saldo a Favor"
                   >
                     <span slot="description">
+                      <h6>Impuesto: {{selected.impuesto}}</h6>
+                      <h6>Concepto: {{selected.concepto}}</h6>
+                      <h6>Periodo: {{selected.periodo}}</h6>
+                      <h6>Saldo a Favor: $ {{selected.saldoFavor}}</h6>
+                    </span>
+                    <!-- <span slot="description">
                       <h6>Impuesto: Inmobiliario</h6>
                       <h6>Concepto: Capital</h6>
                       <h6>Periodo: 2010/01</h6>
                       <h6>Saldo a Favor: $ 1.521.36</h6>
-                    </span>
+                    </span> -->
                   </el-step>
                   <el-step
                     title="Destino"
                     description="Seleccione una fila de las deudas compensables"
                   >
                     <span slot="description">
-                      <h6>Impuesto: Inmobiliario</h6>
-                      <h6>Concepto: Capital</h6>
-                      <h6>Periodo: 2010/05</h6>
-                      <h6>Saldo a Favor: $ 1.521.36</h6>
+                      <h6>Impuesto: {{deudaSelected.impuesto}}</h6>
+                      <h6>Concepto: {{deudaSelected.concepto}}</h6>
+                      <h6>Periodo: {{deudaSelected.periodo}}</h6>
+                      <h6>Saldo a Favor: $ {{deudaSelected.importe}}</h6>
                     </span>
                   </el-step>
                   <el-step title="Importe" description="Ingrese el importe a compensar"></el-step>
                 </el-steps>
-                <el-button  v-show="isActive" class="mt-20" type="primary" size="mini" @click="next">Paso Siguiente</el-button>
+                <el-button  v-show="isActive" class="mt-20" type="primary" size="mini" @click="next" :disabled="pasoSiguienteState">Paso Siguiente</el-button>
                 <v-divider></v-divider>
                 <el-tabs v-model="activeTab">
                   <!-- TAB OBLIGACIONES -->
@@ -82,10 +89,12 @@
                       :columns="tableColumnsObligaciones"
                       :pagination="pagination"
                       :show-custom-header="false"
+                      
                     >
-                      <template slot-scope slot="column-slot">
-                        <el-button size="mini" icon="fas fa-plus"></el-button>
-                        <!-- <el-radio v-model="radio" label=""></el-radio> -->
+                      <template  slot-scope="key" slot="columnRadio">
+                        <!-- <el-button @click="testTest(key.$index)" size="mini" icon="fas fa-plus"></el-button> -->
+                        <!-- {{key}} -->
+                        <el-radio v-model="radioObligacion" :label="key.$index" @change="handleSelectionChange" ></el-radio>
                       </template>
                     </el-table-wrapper>
                     <el-button size="mini" @click="setCurrent()">Borrar selección</el-button>
@@ -130,6 +139,80 @@
                       </b-collapse>
                     </b-navbar>
                     <v-divider></v-divider>
+
+                    <!-- {{dataDeudas}} -->
+                    <el-table
+                    :data="tableData"
+                    style="width: 100%" >
+                    
+                      <!-- <el-radio v-model="radio" :label="key.$index" @change="handleSelectionChange" ></el-radio> -->
+                      
+                      <!-- <el-radio v-model="radio" :label="key.$index" @change="handleSelectionChange" ></el-radio> -->
+                        <!-- <el-radio v-model="radioDos" :label="key.$index"></el-radio>  -->
+                         
+                    
+                    <!-- <el-table-column prop="checkbox" label="checkbox"> -->
+                      <!-- <template slot-scope="key" slot="radioBoton"> -->
+                          <!-- <el-radio v-model="radio" :label="key.$index" @change="handleSelectionChange"></el-radio> -->
+                          <!-- <el-radio v-model="radio" :label="key"></el-radio> -->
+                      <!-- </template> -->
+                    <!-- </el-table-column > -->
+                    <el-table-column prop="checkbox" key="index" label="checkbox">
+                      <template slot-scope="scope">
+                        <el-radio v-model="radioDeuda" :label="scope.$index"  @change="deudaSeleccionada"></el-radio>
+                      </template>
+                    </el-table-column>
+
+                   
+                    <!-- <el-table-column>
+                      <template slot-scope="props" slot="">
+                        <el-radio v-model="radio" :label="key.$index" @change="handleSelectionChange" ></el-radio>
+                      </template>
+                    </el-table-column> -->
+                    <el-table-column type="expand">
+                      <template slot-scope="props">
+                        <p class="detalles">Capital: 1500</p>
+                        <p class="detalles">Intereses resarcitorios: 2000</p>
+                        <p class="detalles">Intereses punitorios: 3000</p>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="Impuesto"
+                      prop="impuesto">
+                    </el-table-column>
+                    <el-table-column
+                      label="Concepto"
+                      prop="concepto">
+                    </el-table-column>
+                    <el-table-column
+                      label="Periodo"
+                      prop="periodo"
+                      >
+                    </el-table-column>
+                    <el-table-column
+                      label="Vencimiento"
+                      prop="vencimiento"
+                      >
+                    </el-table-column>
+                    <el-table-column
+                      label="Fecha Demanda"
+                      prop="fechaDemanda"
+                      >
+                    </el-table-column>
+                    <el-table-column
+                      label="Cantidad de Dias"
+                      prop="cantidadDias"
+                      >
+                    </el-table-column>
+                    <el-table-column
+                      label="Fecha de Demanda"
+                      prop="fechaDemanda"
+                      >
+                    </el-table-column>
+                  </el-table>
+
+
+<!-- 
                     <el-table-wrapper
                       row-key="id"
                       ref="tableDeudas"
@@ -138,12 +221,14 @@
                       :pagination="pagination"
                       :show-custom-header="false"
                     >
-                      <template slot-scope slot="column-slot">
-                        <el-button size="mini" icon="fas fa-plus"></el-button>
-                        <!-- <el-radio v-model="radio" label=""></el-radio> -->
+
+                      <template slot-scope="key" slot="columnRadioDeudas">
+                        <el-radio v-model="radioDeudas" :label="key.$index" @change="handleSelectionChange" ></el-radio>
                       </template>
+                      
                     </el-table-wrapper>
-                    <el-button size="mini" @click="setCurrent()">Borrar selección</el-button>
+                     -->
+                    <!-- <el-button size="mini" @click="setCurrent()">Borrar selección</el-button> -->
                   </el-tab-pane>
                   <!-- TAB IMPORTE -->
                   <el-tab-pane label="Importe" name="importe" disabled>
@@ -164,7 +249,7 @@
                         >Compensar ahora</el-button>
                       </b-link>
                       <v-divider></v-divider>
-                      <h2>Impuesto a compensar: Inmobiliario | Periodo: 2010/01 | Importe a compensar: $ {{ monto }}</h2>
+                      <h2>Impuesto a Compensar: {{selected.impuesto}} | Periodo: {{selected.periodo}} | Importe a Compensar: $ {{ monto }}</h2>
                       <v-divider></v-divider>
                     </b-col>
                   </el-tab-pane>
@@ -195,6 +280,28 @@ export default {
   },
   data() {
     return {
+       tableData: [
+         {
+          id: 1,
+          impuesto: "Inmobiliario",
+          concepto: "Total",
+          periodo: "2010/01",
+          vencimiento: "2010/05/02",
+          fechaDemanda: "2010/01",
+          cantidadDias: 460,
+          importe: 1521.36,
+        },
+        {
+          id: 2,
+          impuesto: "Ingresos Brutos",
+          concepto: "Total",
+          periodo: "2010/01",
+          vencimiento: "2010/05/02",
+          fechaDemanda: "2010/01",
+          cantidadDias: 460,
+          importe: 2521.36,
+        }
+       ],
       dataObligaciones: [
         {
           impuesto: "Inmobiliario",
@@ -217,7 +324,8 @@ export default {
       ],
       tableColumnsObligaciones: [
         {
-          type: "selection"
+          prop: "tag",
+          scopedSlot: "columnRadio"
         },
         {
           prop: "impuesto",
@@ -328,7 +436,8 @@ export default {
       ],
       tableColumnsDeudas: [
         {
-          type: "selection"
+          prop: "tag",
+          scopedSlot: "columnRadioDeudas",
         },
         {
           width: 40
@@ -377,7 +486,7 @@ export default {
         onCurrentChange: this.onPageCurrentChange
       },
 
-      selected: [],
+      selected: {},
       filtradoObligaciones: "",
       filtradoDeudas: "",
       active: 0, // step
@@ -385,14 +494,45 @@ export default {
       monto: 0,
       radio: 0,
       currentRow: null,
-      isActive: true
+      isActive: true,
+      radioDeuda: null,
+      radioObligacion: null,
+      deudaSelected: {},
+      pasoSiguienteState: false
     };
   },
   methods: {
+    testTest(val){
+      console.log("test", val.row)
+    },
+    deudaSeleccionada(val){
+      // console.log("variable", this.radioDeuda)
+      console.log("deuda selected variable", val)
+      console.log("deuda selected", this.tableData[val])
+      this.deudaSelected = this.tableData[val]
+    },
+    handleSelectionChange(val){
+      console.log("val", val)
+      console.log("handleSelectionChange", this.dataObligaciones[val])
+      this.selected = this.dataObligaciones[val]
+      // this.selected = val[0]
+      // if (val.length > 0 ) {
+        
+      // }
+      
+    },
     filterTag(value, row) {
       return row.tag === value;
     },
     next() {
+
+      
+      // if (this.radioDeuda < 0) {
+      //   console.log("Radio Deuda", this.radioDeuda)
+      // }
+
+      this.pasoSiguienteState = true
+
       if (this.active++ > 1){
         this.isActive = false
       } 
@@ -415,7 +555,45 @@ export default {
       this.$refs.tableDeudas.setCurrentRow(row);
     }
   },
+  watch: {
+    // COMPROBAR QUE HAY ALGUN DATO EN ORINGEN!
+    radioObligacion: function(){
+      console.log("change")
+      if (this.radioObligacion === null) {
+            console.log("NULL")
+            this.pasoSiguienteState = true
+          } else {
+            this.pasoSiguienteState = false
+          }
+    },
+
+     radioDeuda: function(){
+      console.log("change")
+      if (this.radioDeuda === null) {
+            console.log("NULL")
+            this.pasoSiguienteState = true
+          } else {
+            this.pasoSiguienteState = false
+          }
+    }
+  },
   computed: {},
-  mounted() {}
+  mounted() {
+    // console.log(this.radioObligacion)
+        if (this.radioObligacion === null) {
+          console.log("NULL")
+          this.pasoSiguienteState = true
+        } else {
+          this.pasoSiguienteState = false
+        }
+    
+  }
 };
 </script>
+
+<style>
+  .detalles{
+    font-size: 13px;
+    text-align: left
+  }
+</style>
